@@ -13,6 +13,8 @@ import { HomePage } from "./components/HomePage";
 import { Search } from "./components/Search";
 import { Playlists } from "./components/Playlists";
 
+import { ReactQueryDevtools } from 'react-query-devtools'
+
 const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
@@ -35,6 +37,8 @@ function App() {
           <PrivateRoute exact path="/playlists" component={Playlists} />
         </Switch>
       </SpotifyAuthProvider>
+
+      <ReactQueryDevtools initialIsOpen={false} />
     </div>
   );
 }

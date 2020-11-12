@@ -15,8 +15,13 @@ export function SpotifyAuthProvider({ children, ...rest }) {
 
   const changeToken = token => setToken(token);
 
+  const removeToken = token => {
+    setToken("");
+    window.localStorage.removeItem("spotifyToken");
+  };
+
   return (
-    <AuthContext.Provider value={{ token, changeToken }} {...rest}>
+    <AuthContext.Provider value={{ token, changeToken, removeToken }} {...rest}>
       {children}
     </AuthContext.Provider>
   );

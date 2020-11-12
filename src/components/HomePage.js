@@ -1,5 +1,5 @@
 import React from "react";
 
 export function HomePage() {
-  return <div></div>;
+  return <div>Oi, você está logado :)</div>;
 }

@@ -1,13 +1,17 @@
 import "./App.css";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { makeStyles } from "@material-ui/styles";
 
-import { Navigation } from "./components/Navigation";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { PrivateRoute } from "./components/PrivateRoute";
+
+import { SpotifyAuthProvider } from "./context/spotify-auth";
+
+import { AuthPage } from "./components/AuthPage";
+import { LoginPage } from "./components/LoginPage";
+import { HomePage } from "./components/HomePage";
 import { Search } from "./components/Search";
 import { Playlists } from "./components/Playlists";
-import { HomePage } from "./components/HomePage";
-
-import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -20,16 +24,19 @@ function App() {
   const classes = useStyles();
 
   return (
-    <Router>
-      <div className={classes.root}>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/search" component={Search} />
-          <Route exact path="/playlists" component={Playlists} />
-        </Switch>
-        <Navigation />
-      </div>
-    </Router>
+    <div className={classes.root}>
+      <SpotifyAuthProvider>
+        <Router>
+          <Switch>
+            <Route exact path="/auth" component={AuthPage} />
+            <Route exact path="/login" component={LoginPage} />
+            <PrivateRoute exact path="/" component={HomePage} />
+            <PrivateRoute exact path="/search" component={Search} />
+            <PrivateRoute exact path="/playlists" component={Playlists} />
+          </Switch>
+        </Router>
+      </SpotifyAuthProvider>
+    </div>
   );
 }
 

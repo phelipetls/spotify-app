@@ -2,7 +2,7 @@ const BASE_URL = "https://accounts.spotify.com";
 const AUTH_ENDPOINT = "authorize";
 const CLIENT_ID = "35d25e5a01eb4c87a4458be1b0786bb8";
 const RESPONSE_TYPE = "token";
-const REDIRECT_URI = "http://localhost:3000/";
+const REDIRECT_URI = "http://localhost:3000/auth";
 const SCOPE = [
   "playlist-modify-public",
   "playlist-modify-private",

@@ -2,7 +2,7 @@ import React from "react";
 
 import { Grid, Typography, Link, Button } from "@material-ui/core";
 
-import { getAuthUrl } from "../utils/spotify-auth";
+import { getAuthUrl } from "../utils/spotify-auth-url";
 
 export function LoginPage() {
   const authUrl = getAuthUrl();

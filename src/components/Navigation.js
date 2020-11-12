@@ -13,7 +13,7 @@ export function Navigation() {
   };
 
   return (
-    <BottomNavigation value={value} onChange={handleChange} showLabels>
+    <BottomNavigation value={value} onChange={handleChange} showLabels data-testid="navigation">
       <BottomNavigationAction
         component={RouterLink}
         to="/"

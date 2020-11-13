@@ -10,12 +10,24 @@ import { CssBaseline } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { theme } from "./styles/Theme.js";
 
+import { QueryCache, ReactQueryCacheProvider } from "react-query";
+
+const queryCache = new QueryCache({
+  defaultConfig: {
+    queries: {
+      refetchOnWindowFocus: false
+    }
+  }
+});
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <App />
+        <ReactQueryCacheProvider queryCache={queryCache}>
+          <App />
+        </ReactQueryCacheProvider>
       </ThemeProvider>
     </Router>
   </React.StrictMode>,

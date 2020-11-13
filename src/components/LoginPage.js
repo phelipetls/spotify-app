@@ -1,7 +1,10 @@
 import React from "react";
 
 import { Grid, Typography, Link, Button } from "@material-ui/core";
+import { Redirect } from "react-router-dom";
+
 import { getAuthUrl } from "../utils/spotify-auth-url";
+import { useAuth } from "../context/spotify-auth";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -14,7 +17,12 @@ const useStyles = makeStyles(theme => ({
 export function LoginPage() {
   const classes = useStyles();
 
+  const { token } = useAuth();
   const authUrl = getAuthUrl();
+
+  if (token) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <Grid

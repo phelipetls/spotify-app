@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { makeStyles } from "@material-ui/styles";
+import { Container } from "@material-ui/core";
 
 import { Route, Switch } from "react-router-dom";
 import { PrivateRoute } from "./components/PrivateRoute";
@@ -13,33 +13,19 @@ import { HomePage } from "./components/HomePage";
 import { Search } from "./components/Search";
 import { Playlists } from "./components/Playlists";
 
-import { ReactQueryDevtools } from 'react-query-devtools'
-
-const useStyles = makeStyles(() => ({
-  root: {
-    display: "flex",
-    flexFlow: "column"
-  }
-}));
-
 function App() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <SpotifyAuthProvider>
+    <SpotifyAuthProvider>
+      <Container maxWidth="xs" style={{ height: "100vh" }}>
         <Switch>
           <Route exact path="/auth" component={AuthPage} />
           <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/another-route" render={() => <div>TESTE</div>} />
           <PrivateRoute exact path="/" component={HomePage} />
           <PrivateRoute exact path="/search" component={Search} />
           <PrivateRoute exact path="/playlists" component={Playlists} />
         </Switch>
-      </SpotifyAuthProvider>
-
-      <ReactQueryDevtools initialIsOpen={false} />
-    </div>
+      </Container>
+    </SpotifyAuthProvider>
   );
 }
 

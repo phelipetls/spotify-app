@@ -7,10 +7,10 @@ import { MemoryRouter as Router } from "react-router-dom";
 import App from "./App";
 
 it("renders login page when unauthenticated", () => {
-  render(<App />, { wrapper: Router });
+  const { queryByTestId } = render(<App />, { wrapper: Router });
 
-  const loginText = screen.getByText(/Clique no link abaixo para fazer login/i);
-  expect(loginText).toBeInTheDocument();
+  const loginButton = screen.queryByTestId("login-button");
+  expect(loginButton).toBeInTheDocument();
 });
 
 it("stores token in localStorage when redirected to /auth by spotify", async () => {

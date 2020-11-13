@@ -28,7 +28,12 @@ export function PrivateRoute({ component: Component, ...rest }) {
     <Route {...rest}>
       {auth.token ? (
         <>
-          <Grid container direction="column" className={classes.container}>
+          <Grid
+            container
+            direction="column"
+            className={classes.container}
+            wrap="nowrap"
+          >
             <NavigationTop />
 
             <Grid item className={classes.flexGrow}>

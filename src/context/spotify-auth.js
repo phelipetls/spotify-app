@@ -15,7 +15,7 @@ export function SpotifyAuthProvider({ children, ...rest }) {
 
   const changeToken = token => setToken(token);
 
-  const removeToken = token => {
+  const removeToken = () => {
     setToken("");
     window.localStorage.removeItem("spotifyToken");
   };

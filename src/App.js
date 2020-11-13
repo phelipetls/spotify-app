@@ -12,6 +12,7 @@ import { LoginPage } from "./components/LoginPage";
 import { HomePage } from "./components/HomePage";
 import { Search } from "./components/Search";
 import { Playlists } from "./components/Playlists";
+import { Logout } from "./components/Logout";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Switch>
           <Route exact path="/auth" component={AuthPage} />
           <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/logout" component={Logout} />
           <PrivateRoute exact path="/" component={HomePage} />
           <PrivateRoute exact path="/search" component={Search} />
           <PrivateRoute exact path="/playlists" component={Playlists} />

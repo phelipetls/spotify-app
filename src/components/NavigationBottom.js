@@ -5,7 +5,7 @@ import { Home, QueueMusic, Search } from "@material-ui/icons";
 
 import { Link as RouterLink } from "react-router-dom";
 
-export function Navigation() {
+export function NavigationBottom() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (_, newValue) => {

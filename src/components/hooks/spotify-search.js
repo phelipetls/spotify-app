@@ -19,13 +19,13 @@ export function useSpotifySearch() {
   // See
   // https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci
   // for details about this implementation
-  const [query, setQuery] = useState("arca");
+  const [query, setQuery] = useState("");
   const [searchType, setSearchType] = useState("artist");
 
   // Use debounced input to search in Spotify
-  const [debouncedQuery] = useDebounce(query, 1000);
+  const [debouncedQuery] = useDebounce(query, 500);
 
-  // react-query will not make anothe call if the value hasn't chaned
+  // react-query will not make another call if the value hasn't changed
   const response = useSpotifyQuery(
     ["Search in spotify", { debouncedQuery, searchType }],
     () => searchFunction(debouncedQuery, searchType)

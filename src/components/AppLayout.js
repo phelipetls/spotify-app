@@ -7,6 +7,8 @@ import { NavigationTop } from "./NavigationTop";
 
 import { makeStyles } from "@material-ui/core/styles";
 
+import { PlaylistsProvider } from "./context/playlists";
+
 const useStyles = makeStyles(theme => ({
   container: {
     height: "100%"
@@ -37,7 +39,7 @@ export function AppLayout({ children }) {
       <NavigationTop />
 
       <Grid item className={classes.flexGrow}>
-        {children}
+        <PlaylistsProvider>{children}</PlaylistsProvider>
       </Grid>
 
       <NavigationBottom />

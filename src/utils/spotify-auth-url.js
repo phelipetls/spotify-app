@@ -1,3 +1,5 @@
+import { getRandomString } from "./get-random-string";
+
 const BASE_URL = "https://accounts.spotify.com";
 const AUTH_ENDPOINT = "authorize";
 const CLIENT_ID = "35d25e5a01eb4c87a4458be1b0786bb8";
@@ -12,15 +14,6 @@ const SCOPE = [
   "playlist-read-private",
   "playlist-read-collaborative"
 ];
-
-const getRandomString = length => {
-  const possible =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-  return Array.from({ length })
-    .map(() => possible[Math.floor(Math.random() * possible.length)])
-    .join("");
-};
 
 export function getAuthUrl() {
   const queryString = new URLSearchParams();

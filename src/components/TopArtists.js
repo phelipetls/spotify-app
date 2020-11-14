@@ -6,8 +6,9 @@ import { useSpotifyQuery } from "./hooks/spotify-query";
 import { SpotifyGrid } from "./SpotifyGrid";
 
 export function TopArtists() {
-  const { data = {} } = useSpotifyQuery("Fetch user top artists", () =>
-    axios.get("me/top/artists")
+  const { isLoading, data = {} } = useSpotifyQuery(
+    "Fetch user top artists",
+    () => axios.get("me/top/artists")
   );
 
   const items = data?.data?.items || [];
@@ -19,5 +20,7 @@ export function TopArtists() {
     image: artist.images[0]
   }));
 
-  return <SpotifyGrid title="Top Artistas" items={artists} />;
+  return (
+    <SpotifyGrid title="Top Artistas" items={artists} isLoading={isLoading} />
+  );
 }

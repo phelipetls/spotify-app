@@ -8,6 +8,7 @@ import {
   Grid,
   Link
 } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -39,9 +40,11 @@ const useStyles = makeStyles(theme => ({
 export function SpotifyGridItem(props) {
   const classes = useStyles();
 
-  const { item } = props;
+  const { item, isLoading } = props;
 
-  const img = (
+  const img = isLoading ? (
+    <Skeleton variant="rect" className={classes.img} />
+  ) : (
     <CardMedia
       component="img"
       src={item.image.url}
@@ -52,20 +55,24 @@ export function SpotifyGridItem(props) {
 
   const title = (
     <Typography variant="subtitle1" color="textPrimary" noWrap>
-      <Link
-        href={item.spotify_url}
-        underline="none"
-        color="inherit"
-        title={`Ouça ${item.title} no Spotify`}
-      >
-        {item.title}
-      </Link>
+      {isLoading ? (
+        <Skeleton />
+      ) : (
+        <Link
+          href={item.spotify_url}
+          underline="none"
+          color="inherit"
+          title={`Ouça ${item.title} no Spotify`}
+        >
+          {item.title}
+        </Link>
+      )}
     </Typography>
   );
 
   const subtitle = item.subtitle && (
     <Typography variant="subtitle2" color="textSecondary" noWrap>
-      {item.subtitle}
+      {isLoading ? <Skeleton /> : item.subtitle}
     </Typography>
   );
 

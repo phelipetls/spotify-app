@@ -6,7 +6,7 @@ import { useSpotifyQuery } from "./hooks/spotify-query";
 import { SpotifyGrid } from "./SpotifyGrid";
 
 export function TopTracks() {
-  const { data = {} } = useSpotifyQuery(
+  const { isLoading, data = {} } = useSpotifyQuery(
     "Fetch user top tracks",
     () => axios.get("me/top/tracks")
   );
@@ -21,5 +21,7 @@ export function TopTracks() {
     image: track.album.images[0]
   }));
 
-  return <SpotifyGrid title="Top Faixas" items={tracks} />;
+  return (
+    <SpotifyGrid title="Top Faixas" items={tracks} isLoading={isLoading} />
+  );
 }

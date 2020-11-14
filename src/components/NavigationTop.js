@@ -9,6 +9,7 @@ import {
   AppBar,
   Toolbar
 } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
 import { PowerSettingsNew } from "@material-ui/icons";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -21,45 +22,71 @@ const useStyles = makeStyles(theme => ({
   avatar: {
     marginRight: theme.spacing(2)
   },
+  username: {
+    minWidth: "14ch"
+  },
   accountType: {
-    fontSize: "small"
+    fontSize: "small",
+    minWidth: "10ch"
   }
 }));
 
 export function NavigationTop() {
   const classes = useStyles();
 
-  const { data = {} } = useSpotifyQuery(
-    "Fetch user data",
-    () => axios.get("me")
+  const { isLoading, data = {} } = useSpotifyQuery("Fetch user data", () =>
+    axios.get("me")
   );
 
-  const { display_name: userName, images, product } = data?.data || {};
+  const { display_name: name, images, product } = data?.data || {};
 
-  const imageUrl = images && images[0].url;
+  const imageUrl = (images && images[0].url) || "";
+
+  const avatar = isLoading ? (
+    <Skeleton variant="circle" className={classes.avatar}>
+      <Avatar />
+    </Skeleton>
+  ) : (
+    <Avatar
+      alt={`${name}'s avatar`}
+      src={imageUrl}
+      className={classes.avatar}
+    />
+  );
+
+  const username = (
+    <Typography
+      component="h1"
+      variant="h6"
+      data-testid="user-name"
+      className={classes.username}
+    >
+      {isLoading ? <Skeleton /> : name}
+    </Typography>
+  );
+
+  const plan = (
+    <Typography
+      color="textSecondary"
+      variant="subtitle1"
+      className={classes.accountType}
+    >
+      {isLoading ? (
+        <Skeleton />
+      ) : (
+        `Plano: ${product === "open" ? "Free" : product}`
+      )}
+    </Typography>
+  );
 
   return (
     <AppBar color="secondary" position="static">
       <Toolbar component={Grid}>
         <Grid item container alignItems="center">
-          <Avatar
-            alt={`${userName}'s avatar`}
-            src={imageUrl}
-            className={classes.avatar}
-          />
-
+          {avatar}
           <Grid item>
-            <Typography component="h1" variant="h6" data-testid="user-name">
-              {userName}
-            </Typography>
-
-            <Typography
-              color="textSecondary"
-              variant="subtitle1"
-              className={classes.accountType}
-            >
-              Plano: {product === "open" ? "Free" : product}
-            </Typography>
+            {username}
+            {plan}
           </Grid>
         </Grid>
 

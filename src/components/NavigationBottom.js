@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+
+import { useLocation } from "react-router-dom";
 
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 import { Home, QueueMusic, Search } from "@material-ui/icons";
@@ -6,7 +8,11 @@ import { Home, QueueMusic, Search } from "@material-ui/icons";
 import { Link as RouterLink } from "react-router-dom";
 
 export function NavigationBottom() {
-  const [value, setValue] = React.useState(0);
+  // The initial value must be dependent on the current URL. If the user goes
+  // to '/search', the initial value should then be 'search'.
+  const location = useLocation();
+
+  const [value, setValue] = useState(location.pathname.slice(1));
 
   const handleChange = (_, newValue) => {
     setValue(newValue);
@@ -21,18 +27,21 @@ export function NavigationBottom() {
     >
       <BottomNavigationAction
         component={RouterLink}
+        value=""
         to="/"
-        label="Home"
+        label="Início"
         icon={<Home />}
       />
       <BottomNavigationAction
         component={RouterLink}
+        value="search"
         to="/search"
-        label="Search"
+        label="Pesquisar"
         icon={<Search />}
       />
       <BottomNavigationAction
         component={RouterLink}
+        value="playlists"
         to="/playlists"
         label="Playlists"
         icon={<QueueMusic />}

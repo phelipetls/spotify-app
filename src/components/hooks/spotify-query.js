@@ -1,35 +1,25 @@
+import axios from "axios";
 import { useQuery } from "react-query";
 import { useAuth } from "../../context/spotify-auth";
 
 const BASE_URL = "https://api.spotify.com/v1/";
 
-const fetchSpotify = async (url, token) => {
-  const response = await fetch(url, {
-    headers: { Authorization: `Bearer ${token}` }
-  });
-  const json = await response.json();
-  return json;
-};
-
-export function useSpotifyQuery(queryKeys, { endpoint }) {
-  const url = BASE_URL + endpoint;
-
+export function useSpotifyQuery(queryKeys, fetcher) {
   const { token, removeToken } = useAuth();
 
-  const responseInfo = useQuery(queryKeys, () => fetchSpotify(url, token), {
+  axios.interceptors.request.use(req => {
+    req.baseURL = BASE_URL;
+    req.headers["Authorization"] = `Bearer ${token}`;
+    return req;
+  });
+
+  const response = useQuery(queryKeys, fetcher, {
     retry: false
   });
 
-  const error = responseInfo.data && responseInfo.data.error;
-
-  if (
-    error &&
-    error.status &&
-    error.status === 401 &&
-    error.message === "The access token expired"
-  ) {
+  if (response.isError && response?.error?.response?.status === 401) {
     removeToken("");
   }
 
-  return responseInfo;
+  return response;
 }

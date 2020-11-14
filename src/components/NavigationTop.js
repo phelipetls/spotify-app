@@ -12,6 +12,7 @@ import {
 import { PowerSettingsNew } from "@material-ui/icons";
 import { Link as RouterLink } from "react-router-dom";
 
+import axios from "axios";
 import { useSpotifyQuery } from "./hooks/spotify-query";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -28,11 +29,12 @@ const useStyles = makeStyles(theme => ({
 export function NavigationTop() {
   const classes = useStyles();
 
-  const { data = {} } = useSpotifyQuery("Fetch user data", {
-    endpoint: "me"
-  });
+  const { data = {} } = useSpotifyQuery(
+    "Fetch user data",
+    () => axios.get("me")
+  );
 
-  const { display_name: userName, images, product } = data;
+  const { display_name: userName, images, product } = data?.data || {};
 
   const imageUrl = images && images[0].url;
 

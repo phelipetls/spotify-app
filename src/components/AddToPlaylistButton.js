@@ -40,11 +40,17 @@ export function AddToPlaylistButton({ tracks }) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        {playlists.map(playlist => (
-          <MenuItem onClick={() => handleClose(playlist.id, items)}>
-            {playlist.name}
+        {playlists.length > 0 ? (
+          playlists.map(playlist => (
+            <MenuItem onClick={() => handleClose(playlist.id)}>
+              {playlist.name}
+            </MenuItem>
+          ))
+        ) : (
+          <MenuItem onClick={handlePlaylistCreation}>
+            Criar nova playlist
           </MenuItem>
-        ))}
+        )}
       </Menu>
     </>
   );

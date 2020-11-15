@@ -14,7 +14,7 @@ import {
 
 import { AddToPlaylistButton } from "./AddToPlaylistButton";
 
-import { formatMilliseconds } from "./utils/formatMilliseconds";
+import { formatDuration } from "./utils/formatDuration";
 
 import { makeStyles } from "@material-ui/styles";
 
@@ -113,7 +113,7 @@ export function AlbumTracksTable(props) {
                 </Link>
               </TableCell>
               <TableCell align="right">
-                {formatMilliseconds(track.duration)}
+                {formatDuration(track.duration)}
               </TableCell>
             </TableRow>
           ))}

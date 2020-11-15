@@ -7,7 +7,7 @@ import { useSpotifyQuery } from "./hooks/spotify-query";
 
 import { SpotifyListItem } from "./SpotifyListItem";
 
-import { formatMilliseconds } from "./utils/formatMilliseconds";
+import { formatDuration } from "./utils/formatDuration";
 
 const placeholderTracklist = Array.from({ length: 10 }).map((_, index) => ({
   id: index
@@ -31,7 +31,7 @@ export function PlaylistTrackList({ id, tracks }) {
         title: track.name,
         image: track.album.images[0],
         spotify_url: track.external_urls.spotify,
-        subtitle: formatMilliseconds(track.duration_ms),
+        subtitle: formatDuration(track.duration_ms),
         type: "track"
       }));
 

@@ -16,6 +16,9 @@ jobs:
       - name: Build site
         run: npm run build
 
+      - name: Move _redirects to build folder
+        run: mv _redirects build
+
       - name: Deploy to Netlify
         uses: jsmrcaga/action-netlify-deploy@v1.1.0
         with:

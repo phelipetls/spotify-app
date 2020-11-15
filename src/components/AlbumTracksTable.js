@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 
 import { AddToPlaylistButton } from "./AddToPlaylistButton";
+import { SkeletonTable } from "./SkeletonTable";
 
 import { formatDuration } from "./utils/formatDuration";
 
@@ -44,7 +45,7 @@ function isArrayEqual(arr1, arr2) {
 export function AlbumTracksTable(props) {
   const classes = useStyles();
 
-  const { tracks } = props;
+  const { tracks, isLoading } = props;
 
   const [selected, setSelected] = useState([]);
 
@@ -95,28 +96,36 @@ export function AlbumTracksTable(props) {
         </TableHead>
 
         <TableBody>
-          {tracks.map(track => (
-            <TableRow>
-              <TableCell
-                padding="checkbox"
-                onClick={e => handleClick(e, track.id)}
-              >
-                <Checkbox
-                  color="primary"
-                  checked={selected.includes(track.id)}
-                />
-              </TableCell>
-              <TableCell>{track.number}</TableCell>
-              <TableCell>
-                <Link color="inherit" underline="none" href={track.spotify_url}>
-                  {track.name}
-                </Link>
-              </TableCell>
-              <TableCell align="right">
-                {formatDuration(track.duration)}
-              </TableCell>
-            </TableRow>
-          ))}
+          {isLoading ? (
+            <SkeletonTable nRows={10} nColumns={4} />
+          ) : (
+            tracks.map(track => (
+              <TableRow>
+                <TableCell
+                  padding="checkbox"
+                  onClick={e => handleClick(e, track.id)}
+                >
+                  <Checkbox
+                    color="primary"
+                    checked={selected.includes(track.id)}
+                  />
+                </TableCell>
+                <TableCell>{track.number}</TableCell>
+                <TableCell>
+                  <Link
+                    color="inherit"
+                    underline="none"
+                    href={track.spotify_url}
+                  >
+                    {track.name}
+                  </Link>
+                </TableCell>
+                <TableCell align="right">
+                  {formatDuration(track.duration)}
+                </TableCell>
+              </TableRow>
+            ))
+          )}
         </TableBody>
       </Table>
     </>

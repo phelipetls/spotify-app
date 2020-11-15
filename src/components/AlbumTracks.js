@@ -3,12 +3,10 @@ import React from "react";
 import axios from "axios";
 import { useSpotifyQuery } from "./hooks/spotify-query";
 
-// import { format } from "date-fns";
-
 import { AlbumTracksTable } from "./AlbumTracksTable";
 
 export function AlbumTracks({ id, name }) {
-  const { data } = useSpotifyQuery(["Fetch album tracks", { id }], () =>
+  const { isLoading, data } = useSpotifyQuery(["Fetch album tracks", { id }], () =>
     axios(`/albums/${id}/tracks`)
   );
 
@@ -21,5 +19,5 @@ export function AlbumTracks({ id, name }) {
       spotify_url: track.external_urls.spotify
     })) || [];
 
-  return <AlbumTracksTable tracks={albumTracks} />;
+  return <AlbumTracksTable tracks={albumTracks} isLoading={isLoading} />;
 }

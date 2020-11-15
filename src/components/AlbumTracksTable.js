@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import {
+  Link,
   Table,
   TableRow,
   TableBody,
@@ -106,7 +107,11 @@ export function AlbumTracksTable(props) {
                 />
               </TableCell>
               <TableCell>{track.number}</TableCell>
-              <TableCell>{track.name}</TableCell>
+              <TableCell>
+                <Link color="inherit" underline="none" href={track.spotify_url}>
+                  {track.name}
+                </Link>
+              </TableCell>
               <TableCell align="right">
                 {formatMilliseconds(track.duration)}
               </TableCell>

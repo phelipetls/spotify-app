@@ -53,7 +53,17 @@ export function Album() {
         noWrap
         gutterBottom
       >
-        {isLoading ? <Skeleton /> : album.name}
+        {isLoading ? (
+          <Skeleton />
+        ) : (
+          <Link
+            color="inherit"
+            underline="none"
+            href={album.external_urls.spotify}
+          >
+            {album.name}
+          </Link>
+        )}
       </Typography>
 
       <Typography
@@ -62,7 +72,17 @@ export function Album() {
         variant="subtitle1"
         noWrap
       >
-        {isLoading ? <Skeleton /> : album.artists[0].name}
+        {isLoading ? (
+          <Skeleton />
+        ) : (
+          <Link
+            color="inherit"
+            underline="none"
+            href={album.artists[0].external_urls.spotify}
+          >
+            {album.artists[0].name}
+          </Link>
+        )}
       </Typography>
 
       <AlbumTracks id={id} name={album.name} />

@@ -17,7 +17,8 @@ export function AlbumTracks({ id, name }) {
       id: track.id,
       name: track.name,
       duration: track.duration_ms,
-      number: track.track_number
+      number: track.track_number,
+      spotify_url: track.external_urls.spotify
     })) || [];
 
   return <AlbumTracksTable tracks={albumTracks} />;

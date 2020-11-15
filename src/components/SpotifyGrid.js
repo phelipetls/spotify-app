@@ -13,6 +13,18 @@ const useStyles = makeStyles(theme => ({
   sectionTitle: {
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2)
+  },
+  grid: {
+    // spacing between cards. Using Material-UI spacing prop causes the card to
+    // overflow its parent.
+    "& > *": {
+      color: "inherit",
+      textDecoration: "none",
+      margin: `0 ${theme.spacing(0.5)}px`,
+      "&:first-child": {
+        marginLeft: 0
+      }
+    }
   }
 }));
 
@@ -31,7 +43,12 @@ export function SpotifyGrid(props) {
         {isLoading ? <Skeleton /> : title}
       </Typography>
 
-      <Grid container wrap="nowrap" component={ScrollContainer}>
+      <Grid
+        container
+        wrap="nowrap"
+        component={ScrollContainer}
+        className={classes.grid}
+      >
         {gridItems.map(item => (
           <SpotifyGridItem key={item.id} item={item} isLoading={isLoading} />
         ))}

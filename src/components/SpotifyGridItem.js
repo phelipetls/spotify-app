@@ -18,16 +18,6 @@ import { Link as RouterLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
-  cardContainer: {
-    // spacing between cards. Using Material-UI spacing prop causes the card to
-    // overflow its parent.
-    color: "inherit",
-    textDecoration: "none",
-    margin: `0 ${theme.spacing(0.5)}px`,
-    "&:first-child": {
-      marginLeft: 0
-    }
-  },
   card: {
     width: "126px",
     "&:hover": {

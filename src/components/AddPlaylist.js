@@ -11,7 +11,7 @@ export function AddPlaylist() {
   return (
     <ListItem
       button
-      onClick={() => dispatch({ type: "add" })}
+      onClick={() => dispatch({ type: "addPlaylist" })}
       data-testid="add-playlist-button"
     >
       <ListItemIcon>

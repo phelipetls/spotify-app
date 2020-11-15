@@ -15,7 +15,7 @@ function reducer(playlists, action) {
   const { id, tracks, newName } = action.payload || {};
 
   switch (action.type) {
-    case "add":
+    case "addPlaylist":
       const newPlaylist = [
         {
           id: getRandomString(4),
@@ -24,7 +24,7 @@ function reducer(playlists, action) {
         }
       ];
       return playlists.concat(newPlaylist);
-    case "remove":
+    case "deletePlaylist":
       return playlists.filter(playlist => playlist.id !== id);
     case "renamePlaylist":
       return playlists.map(playlist => {

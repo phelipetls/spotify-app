@@ -20,7 +20,7 @@ export function AddToPlaylistButton({ tracks }) {
   };
 
   const handlePlaylistCreation = () => {
-    dispatch({ type: "add" });
+    dispatch({ type: "addPlaylist" });
   };
 
   return (

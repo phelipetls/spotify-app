@@ -23,7 +23,8 @@
     "start": "react-app-rewired start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "eslintConfig": {
     "extends": [
@@ -47,6 +48,7 @@
     "babel-plugin-import": "^1.13.1",
     "customize-cra": "^1.0.0",
     "react-app-rewired": "^2.1.6",
-    "react-query-devtools": "^2.6.3"
+    "react-query-devtools": "^2.6.3",
+    "source-map-explorer": "^2.5.0"
   }
 }

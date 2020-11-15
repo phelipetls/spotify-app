@@ -26,5 +26,5 @@ export function useSpotifySearch(query, searchType) {
     () => searchFunction(debouncedQuery, searchType)
   );
 
-  return response;
+  return [debouncedQuery, response];
 }

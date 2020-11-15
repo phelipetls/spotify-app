@@ -17,7 +17,10 @@ export function Search() {
   const [query, setQuery] = useState("");
   const [searchType, setSearchType] = useState("artist");
 
-  const { data, isLoading } = useSpotifySearch(query, searchType);
+  const [debouncedQuery, { data, isLoading }] = useSpotifySearch(
+    query,
+    searchType
+  );
 
   // If we're searching for 'artist', we wanna get the array in 'artists.items'
   // Similarly for album and track ┄ pluralize it.
@@ -38,7 +41,7 @@ export function Search() {
 
       {query === "" ? (
         <NoSearchResults title="Digite alguma coisa primeiro..." />
-      ) : !isLoading && query !== "" && searchResults.length === 0 ? (
+      ) : !isLoading && debouncedQuery !== "" && searchResults.length === 0 ? (
         <NoSearchResults title="Nenhum resultado encontrado" />
       ) : (
         <SearchResults

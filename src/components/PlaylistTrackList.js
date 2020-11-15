@@ -29,9 +29,10 @@ export function PlaylistTrackList({ id, tracks }) {
     : data?.data?.tracks.map(track => ({
         id: track.id,
         title: track.name,
+        // prettier-ignore
+        subtitle: `${track.artists[0].name} · ${track.album.name} · ${formatDuration(track.duration_ms)}`,
         image: track.album.images[0],
         spotify_url: track.external_urls.spotify,
-        subtitle: formatDuration(track.duration_ms),
         type: "track"
       }));
 

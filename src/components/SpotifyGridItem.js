@@ -4,11 +4,16 @@ import {
   Card,
   CardMedia,
   CardContent,
+  CardActions,
   Typography,
   Grid,
-  Link
+  Link,
+  IconButton
 } from "@material-ui/core";
+import { Add, PlaylistAdd } from "@material-ui/icons";
 import { Skeleton } from "@material-ui/lab";
+
+import { Link as RouterLink } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -16,6 +21,8 @@ const useStyles = makeStyles(theme => ({
   cardContainer: {
     // spacing between cards. Using Material-UI spacing prop causes the card to
     // overflow its parent.
+    color: "inherit",
+    textDecoration: "none",
     margin: `0 ${theme.spacing(0.5)}px`,
     "&:first-child": {
       marginLeft: 0
@@ -33,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1)
   },
   content: {
-    padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`
+    padding: `${theme.spacing(0.5)}px ${theme.spacing(1)}px`
   }
 }));
 
@@ -55,18 +62,7 @@ export function SpotifyGridItem(props) {
 
   const title = (
     <Typography variant="subtitle1" color="textPrimary" noWrap>
-      {isLoading ? (
-        <Skeleton />
-      ) : (
-        <Link
-          href={item.spotify_url}
-          underline="none"
-          color="inherit"
-          title={`Ouça ${item.title} no Spotify`}
-        >
-          {item.title}
-        </Link>
-      )}
+      {isLoading ? <Skeleton /> : item.title}
     </Typography>
   );
 
@@ -77,7 +73,15 @@ export function SpotifyGridItem(props) {
   );
 
   return (
-    <Grid item className={classes.cardContainer}>
+    <Grid
+      item
+      className={classes.cardContainer}
+      component={RouterLink}
+      to={`/${item.type}/${item.id}`}
+      underline="none"
+      color="inherit"
+      style={{ cursor: "pointer" }}
+    >
       <Card className={classes.card}>
         {img}
         <CardContent className={classes.content}>

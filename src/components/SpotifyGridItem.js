@@ -4,13 +4,9 @@ import {
   Card,
   CardMedia,
   CardContent,
-  CardActions,
   Typography,
-  Grid,
-  Link,
-  IconButton
+  Grid
 } from "@material-ui/core";
-import { Add, PlaylistAdd } from "@material-ui/icons";
 import { Skeleton } from "@material-ui/lab";
 
 import { Link as RouterLink } from "react-router-dom";

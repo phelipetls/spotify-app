@@ -2,7 +2,6 @@ import React from "react";
 
 import { List } from "@material-ui/core";
 
-import { NoSearchResults } from "./NoSearchResults";
 import { SpotifyListItem } from "./SpotifyListItem";
 
 const placeholderSearchResults = Array.from({ length: 10 }).map((_, index) => ({
@@ -26,11 +25,7 @@ export function SearchResults(props) {
   return (
     <List>
       {searchResults.map(result => (
-        <SpotifyListItem
-          key={result.id}
-          isLoading={isLoading}
-          item={result}
-        />
+        <SpotifyListItem key={result.id} isLoading={isLoading} item={result} />
       ))}
     </List>
   );

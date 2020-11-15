@@ -11,7 +11,9 @@ export function PrivateRoute({ component: Component, ...rest }) {
   return (
     <Route {...rest}>
       {auth.token ? (
-        <AppLayout><Component /></AppLayout>
+        <AppLayout>
+          <Component />
+        </AppLayout>
       ) : (
         <Redirect to="/login" />
       )}

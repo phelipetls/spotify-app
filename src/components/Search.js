@@ -35,12 +35,7 @@ export function Search() {
   };
 
   return (
-    <Grid
-      container
-      direction="column"
-      wrap="nowrap"
-      style={{ height: "100%" }}
-    >
+    <Grid container direction="column" wrap="nowrap" style={{ height: "100%" }}>
       <SearchTabs tab={searchType} handleChange={handleChangeSearchType} />
       <SearchInput query={query} handleChange={handleChangeQuery} />
 

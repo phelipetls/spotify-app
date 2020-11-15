@@ -20,3 +20,5 @@ export function AuthPage() {
 
   return <Redirect to="/" />;
 }
+
+export default AuthPage;

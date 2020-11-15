@@ -89,3 +89,5 @@ export function Album() {
     </>
   );
 }
+
+export default Album;

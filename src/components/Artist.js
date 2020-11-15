@@ -63,3 +63,5 @@ export function Artist() {
     </>
   );
 }
+
+export default Artist;

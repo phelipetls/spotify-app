@@ -53,3 +53,5 @@ export function Search() {
     </Grid>
   );
 }
+
+export default Search;

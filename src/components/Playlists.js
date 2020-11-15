@@ -52,3 +52,5 @@ export function Playlists() {
     </>
   );
 }
+
+export default Playlists;

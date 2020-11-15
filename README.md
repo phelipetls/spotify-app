@@ -1,7 +1,9 @@
 # Simple Spotify App
 
-This is a Spotify application written on React, for a job application
-test. It's mobile only, not responsive, there was intentionally no
+This is a Spotify application written in React, for a job application
+test.
+
+It's mobile only, not responsive, there was intentionally no
 attempt to make a desktop layout.
 
 I used the [Material-UI](https://material-ui.com/) library for the

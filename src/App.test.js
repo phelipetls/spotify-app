@@ -1,13 +1,12 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
-import { createMemoryHistory } from "history";
 import { MemoryRouter as Router } from "react-router-dom";
 
 import App from "./App";
 
 it("renders login page when unauthenticated", () => {
-  const { queryByTestId } = render(<App />, { wrapper: Router });
+  render(<App />, { wrapper: Router });
 
   const loginButton = screen.queryByTestId("login-button");
   expect(loginButton).toBeInTheDocument();

@@ -6,8 +6,9 @@ import { useSpotifyQuery } from "./hooks/spotify-query";
 import { AlbumTracksTable } from "./AlbumTracksTable";
 
 export function AlbumTracks({ id, name }) {
-  const { isLoading, data } = useSpotifyQuery(["Fetch album tracks", { id }], () =>
-    axios(`/albums/${id}/tracks`)
+  const { isLoading, data } = useSpotifyQuery(
+    ["Fetch album tracks", { id }],
+    () => axios(`/albums/${id}/tracks`)
   );
 
   const albumTracks =

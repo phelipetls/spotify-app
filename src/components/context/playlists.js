@@ -40,6 +40,8 @@ function reducer(playlists, action) {
         }
         return playlist;
       });
+    default:
+      throw new Error("Not implemented action type");
   }
 }
 

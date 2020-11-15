@@ -6,8 +6,7 @@ import {
   TextField,
   ListItemText,
   ListItemSecondaryAction,
-  IconButton,
-  Grid
+  IconButton
 } from "@material-ui/core";
 import { Delete, Edit } from "@material-ui/icons";
 

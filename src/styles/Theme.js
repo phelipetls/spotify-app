@@ -10,7 +10,7 @@ export const theme = createMuiTheme(
       },
       secondary: {
         main: "#E80909",
-        contrastText: "#FFF",
+        contrastText: "#FFF"
       },
       text: {
         primary: "#FFF",
@@ -23,7 +23,7 @@ export const theme = createMuiTheme(
       action: {
         active: "#B3B3B3",
         selected: "#282828",
-        hover: "#232323",
+        hover: "#232323"
       },
       divider: "rgb(128, 128, 128)"
     },

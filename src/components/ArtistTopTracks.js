@@ -1,12 +1,13 @@
 import React from "react";
 
-import { List, Typography } from "@material-ui/core";
+import { List, Typography, ListItemSecondaryAction } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 
 import axios from "axios";
 import { useSpotifyQuery } from "./hooks/spotify-query";
 
 import { SpotifyListItem } from "./SpotifyListItem";
+import { AddToPlaylistButton } from "./AddToPlaylistButton";
 
 import { makeStyles } from "@material-ui/styles";
 
@@ -50,7 +51,11 @@ export function ArtistTopTracks({ id, name }) {
 
       <List>
         {topTracks.map(track => (
-          <SpotifyListItem key={track.id} isLoading={isLoading} item={track} />
+          <SpotifyListItem key={track.id} isLoading={isLoading} item={track}>
+            <ListItemSecondaryAction>
+              <AddToPlaylistButton tracks={[track.id]} />
+            </ListItemSecondaryAction>
+          </SpotifyListItem>
         ))}
       </List>
     </>

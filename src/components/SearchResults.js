@@ -1,8 +1,9 @@
 import React from "react";
 
-import { List } from "@material-ui/core";
+import { List, ListItemSecondaryAction } from "@material-ui/core";
 
 import { SpotifyListItem } from "./SpotifyListItem";
+import { AddToPlaylistButton } from "./AddToPlaylistButton";
 
 const placeholderSearchResults = Array.from({ length: 10 }).map((_, index) => ({
   id: index
@@ -25,7 +26,14 @@ export function SearchResults(props) {
   return (
     <List>
       {searchResults.map(result => (
-        <SpotifyListItem key={result.id} isLoading={isLoading} item={result} />
+        <SpotifyListItem key={result.id} isLoading={isLoading} item={result}>
+          {/* Pass add to playlist button as secondary action to list item */}
+          {result.type === "track" && (
+            <ListItemSecondaryAction>
+              <AddToPlaylistButton tracks={[result.id]} />
+            </ListItemSecondaryAction>
+          )}
+        </SpotifyListItem>
       ))}
     </List>
   );

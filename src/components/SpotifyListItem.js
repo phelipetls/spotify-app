@@ -5,17 +5,14 @@ import {
   ListItem,
   ListItemText,
   ListItemAvatar,
-  ListItemSecondaryAction,
   Avatar,
   Typography
 } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import { Link as RouterLink } from "react-router-dom";
 
-import { AddToPlaylistButton } from "./AddToPlaylistButton";
-
 export function SpotifyListItem(props) {
-  const { item, isLoading } = props;
+  const { item, children, isLoading } = props;
 
   const avatar = isLoading ? (
     <Skeleton variant="circle">
@@ -50,11 +47,7 @@ export function SpotifyListItem(props) {
     <ListItem>
       <ListItemAvatar>{avatar}</ListItemAvatar>
       {text}
-      {item.type === "track" && (
-        <ListItemSecondaryAction>
-          <AddToPlaylistButton tracks={[item.id]} />
-        </ListItemSecondaryAction>
-      )}
+      {children}
     </ListItem>
   );
 }

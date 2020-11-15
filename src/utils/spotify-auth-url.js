@@ -5,15 +5,7 @@ const AUTH_ENDPOINT = "authorize";
 const CLIENT_ID = "35d25e5a01eb4c87a4458be1b0786bb8";
 const RESPONSE_TYPE = "token";
 const REDIRECT_URI = "http://localhost:3000/auth";
-const SCOPE = [
-  "user-read-private",
-  "user-top-read",
-  "user-library-read",
-  "playlist-modify-public",
-  "playlist-modify-private",
-  "playlist-read-private",
-  "playlist-read-collaborative"
-];
+const SCOPE = ["user-read-private", "user-top-read", "user-library-read"];
 
 export function getAuthUrl() {
   const queryString = new URLSearchParams();

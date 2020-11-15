@@ -14,6 +14,7 @@ import { Search } from "./components/Search";
 import { Playlists } from "./components/Playlists";
 import { Logout } from "./components/Logout";
 import { Artist } from "./components/Artist";
+import { Album } from "./components/Album";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <PrivateRoute exact path="/search" component={Search} />
           <PrivateRoute exact path="/playlists" component={Playlists} />
           <PrivateRoute exact path="/artist/:id" component={Artist} />
+          <PrivateRoute exact path="/album/:id" component={Album} />
         </Switch>
       </Container>
     </SpotifyAuthProvider>

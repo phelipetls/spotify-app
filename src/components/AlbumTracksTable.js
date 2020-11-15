@@ -77,7 +77,7 @@ export function AlbumTracksTable(props) {
           Faixas
         </Typography>
 
-        <AddToPlaylistButton items={selected} />
+        <AddToPlaylistButton tracks={selected} />
       </Toolbar>
 
       <Table className={classes.table}>

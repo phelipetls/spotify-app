@@ -52,7 +52,7 @@ export function SpotifyListItem(props) {
       {text}
       {item.type === "track" && (
         <ListItemSecondaryAction>
-          <AddToPlaylistButton item={item} />
+          <AddToPlaylistButton tracks={[item.id]} />
         </ListItemSecondaryAction>
       )}
     </ListItem>

@@ -5,18 +5,22 @@ import { PlaylistAdd } from "@material-ui/icons";
 
 import { usePlaylists } from "./context/playlists";
 
-export function AddToPlaylistButton({ items }) {
+export function AddToPlaylistButton({ tracks }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const { playlists, addTracksToPlaylist } = usePlaylists();
+  const { playlists, dispatch } = usePlaylists();
 
   const handleClick = e => {
     setAnchorEl(e.currentTarget);
   };
 
-  const handleClose = (id, track) => {
+  const handleClose = id => {
     setAnchorEl(null);
-    addTracksToPlaylist(id, track);
+    dispatch({ type: "addTracksToPlaylist", payload: { id, tracks } });
+  };
+
+  const handlePlaylistCreation = () => {
+    dispatch({ type: "add" });
   };
 
   return (

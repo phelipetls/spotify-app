@@ -6,10 +6,14 @@ import { Add } from "@material-ui/icons";
 import { usePlaylists } from "./context/playlists";
 
 export function AddPlaylist() {
-  const { addPlaylist } = usePlaylists();
+  const { dispatch } = usePlaylists();
 
   return (
-    <ListItem button onClick={addPlaylist} data-testid="add-playlist-button">
+    <ListItem
+      button
+      onClick={() => dispatch({ type: "add" })}
+      data-testid="add-playlist-button"
+    >
       <ListItemIcon>
         <Add />
       </ListItemIcon>

@@ -12,18 +12,20 @@ import { usePlaylists } from "./context/playlists";
 import { EditablePlaylistName } from "./EditablePlaylistName";
 
 export function PlaylistsListItems() {
-  const { playlists, removePlaylist } = usePlaylists();
+  const { playlists, dispatch } = usePlaylists();
 
   return playlists.map(playlist => (
     <ListItem key={playlist.id}>
-      <EditablePlaylistName initialText={playlist.name} />
+      <EditablePlaylistName id={playlist.id} initialText={playlist.name} />
 
       <ListItemSecondaryAction>
         <IconButton
           edge="end"
           aria-label="delete"
           data-testid="delete-playlist-button"
-          onClick={() => removePlaylist(playlist.id)}
+          onClick={() =>
+            dispatch({ type: "remove", payload: { id: playlist.id } })
+          }
         >
           <Delete />
         </IconButton>

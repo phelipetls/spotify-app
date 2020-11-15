@@ -1,40 +1,64 @@
-import React, { useState, useEffect } from "react";
+import React, { useReducer, useEffect } from "react";
 import { getRandomString } from "../../utils/get-random-string";
 
 const PlaylistsContext = React.createContext();
 
+const INITIAL_PLAYLISTS = [];
+
+function getFromLocalStorageIfAvailable(fallback) {
+  return (
+    JSON.parse(window.localStorage.getItem("spotifyPlaylists")) || fallback
+  );
+}
+
+function reducer(playlists, action) {
+  const { id, tracks, newName } = action.payload || {};
+
+  switch (action.type) {
+    case "add":
+      const newPlaylist = [
+        {
+          id: getRandomString(4),
+          name: `Playlist ${playlists.length + 1}`,
+          tracks: []
+        }
+      ];
+      return playlists.concat(newPlaylist);
+    case "remove":
+      return playlists.filter(playlist => playlist.id !== id);
+    case "renamePlaylist":
+      return playlists.map(playlist => {
+        if (playlist.id === id) {
+          return { ...playlist, name: newName };
+        }
+        return playlist;
+      });
+    case "addTracksToPlaylist":
+      return playlists.map(playlist => {
+        if (playlist.id === id) {
+          return { ...playlist, tracks: playlist.tracks.concat(tracks) };
+        }
+        return playlist;
+      });
+  }
+}
+
 export function PlaylistsProvider({ children, ...rest }) {
-  const [playlists, setPlaylists] = useState([]);
+  const [playlists, dispatch] = useReducer(
+    reducer,
+    INITIAL_PLAYLISTS,
+    getFromLocalStorageIfAvailable
+  );
 
   useEffect(() => {
-    localStorage.setItem("spotifyPlaylists", JSON.stringify(playlists));
+    window.localStorage.setItem("spotifyPlaylists", JSON.stringify(playlists));
   }, [playlists]);
-
-  const addPlaylist = () =>
-    setPlaylists(playlists => [
-      ...playlists,
-      {
-        id: getRandomString(4),
-        name: `Playlist ${playlists.length + 1}`,
-        tracks: []
-      }
-    ]);
-
-  const removePlaylist = id =>
-    setPlaylists(playlists => playlists.filter(playlist => playlist.id !== id));
-
-  const addTracksToPlaylist = (id, tracks) => {
-    const targetPlaylist = playlists.find(playlist => playlist.id === id);
-    targetPlaylist.tracks.concat(tracks);
-  };
 
   return (
     <PlaylistsContext.Provider
       value={{
         playlists,
-        addPlaylist,
-        removePlaylist,
-        addTracksToPlaylist
+        dispatch
       }}
       {...rest}
     >

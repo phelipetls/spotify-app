@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { ListItemText, TextField } from "@material-ui/core";
+import { usePlaylists } from "./context/playlists";
 
-export function EditablePlaylistName({ initialText }) {
+export function EditablePlaylistName({ id, initialText }) {
   const [name, setName] = useState(initialText);
   const [isEditing, setIsEditing] = useState(false);
 
+  const { dispatch } = usePlaylists();
+
   const handleChange = e => setName(e.target.value);
+
+  useEffect(() => {
+    dispatch({ type: "renamePlaylist", payload: { id, newName: name } });
+  }, [name]);
 
   const handleKeyDown = e => {
     if (["Enter", "Escape"].includes(e.code)) {

@@ -4,10 +4,13 @@ import {
   ListItem,
   ListItemText,
   ListItemAvatar,
+  ListItemSecondaryAction,
   Avatar,
   Typography
 } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
+
+import { AddToPlaylistButton } from "./AddToPlaylistButton";
 
 export function SearchResultListItem(props) {
   const { item, isLoading } = props;
@@ -32,6 +35,11 @@ export function SearchResultListItem(props) {
     <ListItem>
       <ListItemAvatar>{avatar}</ListItemAvatar>
       {text}
+      {item.type === "track" && (
+        <ListItemSecondaryAction>
+          <AddToPlaylistButton item={item} />
+        </ListItemSecondaryAction>
+      )}
     </ListItem>
   );
 }

@@ -18,7 +18,8 @@ export function TopTracks() {
     subtitle: track.artists[0].name,
     id: track.id,
     spotify_url: track.external_urls.spotify,
-    image: track.album.images[0]
+    image: track.album.images[0],
+    type: "track"
   }));
 
   return (

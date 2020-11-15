@@ -23,12 +23,18 @@ export function PlaylistsProvider({ children, ...rest }) {
   const removePlaylist = id =>
     setPlaylists(playlists => playlists.filter(playlist => playlist.id !== id));
 
+  const addTrackToPlaylist = (id, track) => {
+    const targetPlaylist = playlists.find(playlist => playlist.id === id);
+    targetPlaylist.tracks.push(track);
+  };
+
   return (
     <PlaylistsContext.Provider
       value={{
         playlists,
         addPlaylist,
-        removePlaylist
+        removePlaylist,
+        addTrackToPlaylist
       }}
       {...rest}
     >

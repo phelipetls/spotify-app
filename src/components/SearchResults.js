@@ -19,7 +19,8 @@ export function SearchResults(props) {
         image: searchType === "track" ? item.album.images[0] : item.images[0],
         id: item.id,
         spotify_url: item.external_urls.spotify,
-        subtitle: searchType !== "artist" ? item.artists[0].name : ""
+        subtitle: searchType !== "artist" ? item.artists[0].name : "",
+        type: item.type
       }));
 
   return (

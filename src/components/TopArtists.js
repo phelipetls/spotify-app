@@ -17,7 +17,8 @@ export function TopArtists() {
     title: artist.name,
     id: artist.id,
     spotify_url: artist.external_urls.spotify,
-    image: artist.images[0]
+    image: artist.images[0],
+    type: "artist"
   }));
 
   return (

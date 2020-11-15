@@ -5,10 +5,10 @@ import { PlaylistAdd } from "@material-ui/icons";
 
 import { usePlaylists } from "./context/playlists";
 
-export function AddToPlaylistButton({ item }) {
+export function AddToPlaylistButton({ items }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const { playlists, addTrackToPlaylist } = usePlaylists();
+  const { playlists, addTracksToPlaylist } = usePlaylists();
 
   const handleClick = e => {
     setAnchorEl(e.currentTarget);
@@ -16,7 +16,7 @@ export function AddToPlaylistButton({ item }) {
 
   const handleClose = (id, track) => {
     setAnchorEl(null);
-    addTrackToPlaylist(id, track);
+    addTracksToPlaylist(id, track);
   };
 
   return (
@@ -37,7 +37,7 @@ export function AddToPlaylistButton({ item }) {
         onClose={handleClose}
       >
         {playlists.map(playlist => (
-          <MenuItem onClick={() => handleClose(playlist.id, item)}>
+          <MenuItem onClick={() => handleClose(playlist.id, items)}>
             {playlist.name}
           </MenuItem>
         ))}

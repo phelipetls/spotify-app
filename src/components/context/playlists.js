@@ -23,9 +23,9 @@ export function PlaylistsProvider({ children, ...rest }) {
   const removePlaylist = id =>
     setPlaylists(playlists => playlists.filter(playlist => playlist.id !== id));
 
-  const addTrackToPlaylist = (id, track) => {
+  const addTracksToPlaylist = (id, tracks) => {
     const targetPlaylist = playlists.find(playlist => playlist.id === id);
-    targetPlaylist.tracks.push(track);
+    targetPlaylist.tracks.concat(tracks);
   };
 
   return (
@@ -34,7 +34,7 @@ export function PlaylistsProvider({ children, ...rest }) {
         playlists,
         addPlaylist,
         removePlaylist,
-        addTrackToPlaylist
+        addTracksToPlaylist
       }}
       {...rest}
     >

@@ -2,6 +2,7 @@ import React from "react";
 
 import {
   Grid,
+  Paper,
   Avatar,
   Typography,
   IconButton,
@@ -80,7 +81,7 @@ export function NavigationTop() {
   );
 
   return (
-    <AppBar color="secondary" position="static">
+    <AppBar component={Paper} color="inherit" position="static">
       <Toolbar component={Grid}>
         <Grid item container alignItems="center">
           {avatar}

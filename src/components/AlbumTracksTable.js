@@ -13,6 +13,8 @@ import {
 
 import { AddToPlaylistButton } from "./AddToPlaylistButton";
 
+import { formatMilliseconds } from "./utils/formatMilliseconds";
+
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -36,12 +38,6 @@ const useStyles = makeStyles(theme => ({
 
 function isArrayEqual(arr1, arr2) {
   arr1.length === arr2.length && arr1.every(item => arr2.includes(item));
-}
-
-function formatMilliseconds(milliseconds) {
-  const minutes = new Date(milliseconds).getMinutes();
-  const seconds = new Date(milliseconds).getSeconds();
-  return `${minutes}:${seconds}`;
 }
 
 export function AlbumTracksTable(props) {

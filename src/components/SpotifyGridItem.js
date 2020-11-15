@@ -58,16 +58,8 @@ export function SpotifyGridItem(props) {
     </Typography>
   );
 
-  return (
-    <Grid
-      item
-      className={classes.cardContainer}
-      component={RouterLink}
-      to={`/${item.type}/${item.id}`}
-      underline="none"
-      color="inherit"
-      style={{ cursor: "pointer" }}
-    >
+  const gridItem = (
+    <Grid item className={classes.cardContainer}>
       <Card className={classes.card}>
         {img}
         <CardContent className={classes.content}>
@@ -76,5 +68,19 @@ export function SpotifyGridItem(props) {
         </CardContent>
       </Card>
     </Grid>
+  );
+
+  // Wrap around a link only for albums and artists. Tracks do not have a
+  // route
+  return item.type === "track" ? (
+    gridItem
+  ) : (
+    <RouterLink
+      to={`/${item.type}/${item.id}`}
+      underline="none"
+      color="inherit"
+    >
+      {gridItem}
+    </RouterLink>
   );
 }

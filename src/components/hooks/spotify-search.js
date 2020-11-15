@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import axios from "axios";
 import { useSpotifyQuery } from "./spotify-query";
 import { useDebounce } from "use-debounce";
@@ -15,13 +13,10 @@ const searchFunction = (query, searchType) => {
   }
 };
 
-export function useSpotifySearch() {
-  // See
-  // https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci
-  // for details about this implementation
-  const [query, setQuery] = useState("");
-  const [searchType, setSearchType] = useState("artist");
-
+// See
+// https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci
+// for details about this implementation
+export function useSpotifySearch(query, searchType) {
   // Use debounced input to search in Spotify
   const [debouncedQuery] = useDebounce(query, 500);
 
@@ -31,5 +26,5 @@ export function useSpotifySearch() {
     () => searchFunction(debouncedQuery, searchType)
   );
 
-  return [query, setQuery, searchType, setSearchType, response];
+  return response;
 }

@@ -1,6 +1,6 @@
 // Spotify documentation at
 // https://developer.spotify.com/documentation/web-api/reference/search/search/
-import React from "react";
+import React, { useState } from "react";
 
 import { Grid } from "@material-ui/core";
 
@@ -14,13 +14,10 @@ import { NoSearchResults } from "./NoSearchResults";
 const pluralize = word => word + "s";
 
 export function Search() {
-  const [
-    query,
-    setQuery,
-    searchType,
-    setSearchType,
-    { data, isLoading }
-  ] = useSpotifySearch();
+  const [query, setQuery] = useState("");
+  const [searchType, setSearchType] = useState("artist");
+
+  const { data, isLoading } = useSpotifySearch(query, searchType);
 
   // If we're searching for 'artist', we wanna get the array in 'artists.items'
   // Similarly for album and track ┄ pluralize it.

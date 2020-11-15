@@ -1,6 +1,7 @@
 import React from "react";
 
 import {
+  Link,
   ListItem,
   ListItemText,
   ListItemAvatar,
@@ -9,6 +10,7 @@ import {
   Typography
 } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
+import { Link as RouterLink } from "react-router-dom";
 
 import { AddToPlaylistButton } from "./AddToPlaylistButton";
 
@@ -28,7 +30,20 @@ export function SpotifyListItem(props) {
       <Skeleton variant="rect" />
     </Typography>
   ) : (
-    <ListItemText primary={item.title} secondary={item.subtitle} />
+    <ListItemText secondary={item.subtitle}>
+      {item.type !== "track" ? (
+        <Link
+          color="inherit"
+          underline="none"
+          component={RouterLink}
+          to={`/${item.type}/${item.id}`}
+        >
+          {item.title}
+        </Link>
+      ) : (
+        item.title
+      )}
+    </ListItemText>
   );
 
   return (

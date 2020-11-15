@@ -3,7 +3,7 @@ import React from "react";
 import { List } from "@material-ui/core";
 
 import { NoSearchResults } from "./NoSearchResults";
-import { SearchResultListItem } from "./SearchResultListItem";
+import { SpotifyListItem } from "./SpotifyListItem";
 
 const placeholderSearchResults = Array.from({ length: 10 }).map((_, index) => ({
   id: index
@@ -26,7 +26,7 @@ export function SearchResults(props) {
   return (
     <List>
       {searchResults.map(result => (
-        <SearchResultListItem
+        <SpotifyListItem
           key={result.id}
           isLoading={isLoading}
           item={result}

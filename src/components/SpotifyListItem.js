@@ -12,7 +12,7 @@ import { Skeleton } from "@material-ui/lab";
 
 import { AddToPlaylistButton } from "./AddToPlaylistButton";
 
-export function SearchResultListItem(props) {
+export function SpotifyListItem(props) {
   const { item, isLoading } = props;
 
   const avatar = isLoading ? (

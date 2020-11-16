@@ -4,6 +4,9 @@ import { Redirect } from "react-router-dom";
 
 import { useAuth } from "../context/spotify-auth";
 
+/**
+ * To logout, just remove the token from the context provider.
+ */
 export function Logout() {
   const { removeToken } = useAuth();
 

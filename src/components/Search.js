@@ -13,6 +13,17 @@ import { NoSearchResults } from "./NoSearchResults";
 
 const pluralize = word => word + "s";
 
+/**
+ * Component responsible for searching albums, artists or tracks.
+ *
+ * Which one will be searched depends on the searchType variable (which is
+ * stateful and controlled by the `SearchTabs` component).
+ *
+ * The search will only take place after 500ms because we debounce the query
+ * value inside useSpotifySearch.
+ *
+ * The component SearchResults shows the search results in a list format.
+ */
 export function Search() {
   const [query, setQuery] = useState("");
   const [searchType, setSearchType] = useState("artist");
@@ -37,6 +48,7 @@ export function Search() {
   return (
     <Grid container direction="column" wrap="nowrap" style={{ height: "100%" }}>
       <SearchTabs tab={searchType} handleChange={handleChangeSearchType} />
+
       <SearchInput query={query} handleChange={handleChangeQuery} />
 
       {query === "" ? (

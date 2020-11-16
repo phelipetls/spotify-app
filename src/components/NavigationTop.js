@@ -92,7 +92,7 @@ export function NavigationTop() {
         </Grid>
 
         <Link component={RouterLink} to="/logout" title="Logout">
-          <IconButton>
+          <IconButton data-testid="logout">
             <PowerSettingsNew />
           </IconButton>
         </Link>

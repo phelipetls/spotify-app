@@ -1,3 +1,6 @@
+// Relevant documentation:
+// https://developer.spotify.com/documentation/general/guides/authorization-guide/#implicit-grant-flow
+
 import { getRandomString } from "./get-random-string";
 
 const BASE_URL = "https://accounts.spotify.com";

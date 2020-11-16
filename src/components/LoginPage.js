@@ -14,6 +14,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+/**
+ * Component mainly responsible to show a Login button which will point to a
+ * Spotify Accounts Service URL for authorization.
+ *
+ * If/when the user authorizes, that location will redirect to /auth with
+ * additional information such as the access token.
+ *
+ * Check the getAuthUrl for how the Spotify URL is built.
+ *
+ * This uses the Implicit Grant Flow method of authorization. 
+ * @see https://developer.spotify.com/documentation/general/guides/authorization-guide/#implicit-grant-flow
+ */
 export function LoginPage() {
   const classes = useStyles();
 

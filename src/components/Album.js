@@ -22,6 +22,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+/**
+ * A page to shwo the album's tracks and metadata.
+ *
+ * The tracks are shown in a table with checkboxes for their purpose of adding
+ * them to a playlist.
+ *
+ */
 export function Album() {
   const classes = useStyles();
 

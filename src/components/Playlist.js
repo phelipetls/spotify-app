@@ -7,6 +7,13 @@ import { usePlaylists } from "./context/playlists";
 
 import { PlaylistTrackList } from "./PlaylistTrackList";
 
+/**
+ * A page to show the tracks within a playlist.
+ *
+ * It get the `tracks` array inside an object within the playlist context (an
+ * array of objects), make a request for their maetadata and then show them.
+ *
+ */
 export function Playlist() {
   const { id } = useParams();
   const { playlists } = usePlaylists();

@@ -20,6 +20,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+/**
+ * A page to show artist informations such as top tracks and albums.
+ *
+ */
 export function Artist() {
   const classes = useStyles();
 

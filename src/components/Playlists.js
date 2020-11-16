@@ -21,6 +21,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+/**
+ * Show current playlists.
+ *
+ * The playlists are provided by the playlists context, which is defined in
+ * `./context/playlists.js`.
+ *
+ */
 export function Playlists() {
   const classes = useStyles();
 

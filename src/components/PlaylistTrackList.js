@@ -1,17 +1,22 @@
 import React from "react";
 
-import { List } from "@material-ui/core";
+import {
+  Link,
+  List,
+  Avatar,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  ListItemSecondaryAction
+} from "@material-ui/core";
 
 import axios from "axios";
 import { useSpotifyQuery } from "./hooks/spotify-query";
 
-import { SpotifyListItem } from "./SpotifyListItem";
+import { SpotifyListSkeleton } from "./SpotifyListSkeleton";
+import { AddToPlaylistButton } from "./AddToPlaylistButton";
 
 import { formatDuration } from "./utils/formatDuration";
-
-const placeholderTracklist = Array.from({ length: 10 }).map((_, index) => ({
-  id: index
-}));
 
 export function PlaylistTrackList({ id, tracks }) {
   // Get only 50 first tracks, as it is the API limit
@@ -24,23 +29,41 @@ export function PlaylistTrackList({ id, tracks }) {
     () => axios.get("/tracks?" + searchParams)
   );
 
-  const trackList = isLoading
-    ? placeholderTracklist
-    : data?.data?.tracks.map(track => ({
-        id: track.id,
-        title: track.name,
-        // prettier-ignore
-        subtitle: `${track.artists[0].name} · ${track.album.name} · ${formatDuration(track.duration_ms)}`,
-        image: track.album.images[0],
-        spotify_url: track.external_urls.spotify,
-        type: "track"
-      }));
-
-  return (
+  return isLoading ? (
+    <SpotifyListSkeleton />
+  ) : (
     <List>
-      {trackList.map(result => (
-        <SpotifyListItem key={result.id} isLoading={isLoading} item={result} />
-      ))}
+      {data?.data?.tracks.map(track => {
+        const title = (
+          <Link
+            color="inherit"
+            underline="none"
+            href={track.external_urls.spotify}
+          >
+            {track.name}
+          </Link>
+        );
+
+        const artistName = track.artists[0].name;
+        const albumName = track.album.name;
+        const duration = formatDuration(track.duration_ms);
+
+        const subtitle = `${duration} · ${albumName} · ${artistName}`;
+
+        return (
+          <ListItem key={track.id}>
+            <ListItemAvatar>
+              <Avatar alt={track.name} src={track.album.images[0].url} />
+            </ListItemAvatar>
+
+            <ListItemText secondary={subtitle}>{title}</ListItemText>
+
+            <ListItemSecondaryAction>
+              <AddToPlaylistButton tracks={[track.id]} />
+            </ListItemSecondaryAction>
+          </ListItem>
+        );
+      })}
     </List>
   );
 }

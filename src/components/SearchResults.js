@@ -1,40 +1,65 @@
 import React from "react";
 
-import { List, ListItemSecondaryAction } from "@material-ui/core";
+import {
+  Avatar,
+  Link,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  ListItemSecondaryAction
+} from "@material-ui/core";
 
-import { SpotifyListItem } from "./SpotifyListItem";
+import { SpotifyListSkeleton } from "./SpotifyListSkeleton";
 import { AddToPlaylistButton } from "./AddToPlaylistButton";
 
-const placeholderSearchResults = Array.from({ length: 10 }).map((_, index) => ({
-  id: index
-}));
+function getImageUrl(item) {
+  const images = item.type === "track" ? item.album.images : item.images;
+  return images?.[0]?.url || "";
+}
 
 export function SearchResults(props) {
-  const { items, isLoading, searchType } = props;
+  const { results, isLoading } = props;
 
-  const searchResults = isLoading
-    ? placeholderSearchResults
-    : items.map(item => ({
-        title: item.name,
-        image: searchType === "track" ? item.album.images[0] : item.images[0],
-        id: item.id,
-        spotify_url: item.external_urls.spotify,
-        subtitle: searchType !== "artist" ? item.artists[0].name : "",
-        type: item.type
-      }));
+  if (isLoading) {
+    return <SpotifyListSkeleton />;
+  }
 
   return (
     <List>
-      {searchResults.map(result => (
-        <SpotifyListItem key={result.id} isLoading={isLoading} item={result}>
-          {/* Pass add to playlist button as secondary action to list item */}
-          {result.type === "track" && (
-            <ListItemSecondaryAction>
-              <AddToPlaylistButton tracks={[result.id]} />
-            </ListItemSecondaryAction>
-          )}
-        </SpotifyListItem>
-      ))}
+      {results.map(result => {
+        const title = (
+          <Link
+            color="inherit"
+            underline="none"
+            href={
+              result.type === "track"
+                ? result.external_urls.spotify
+                : `/${result.type}/${result.id}`
+            }
+          >
+            {result.name}
+          </Link>
+        );
+
+        const subtitle = result.type !== "artist" && result.artists[0].name;
+
+        return (
+          <ListItem key={result.id}>
+            <ListItemAvatar>
+              <Avatar alt={result.name} src={getImageUrl(result)} />
+            </ListItemAvatar>
+
+            <ListItemText secondary={subtitle}>{title}</ListItemText>
+
+            {result.type === "track" && (
+              <ListItemSecondaryAction>
+                <AddToPlaylistButton tracks={[result.id]} />
+              </ListItemSecondaryAction>
+            )}
+          </ListItem>
+        );
+      })}
     </List>
   );
 }

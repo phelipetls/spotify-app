@@ -56,11 +56,7 @@ export function Search() {
       ) : !isLoading && debouncedQuery !== "" && searchResults.length === 0 ? (
         <NoSearchResults title="Nenhum resultado encontrado" />
       ) : (
-        <SearchResults
-          items={searchResults}
-          isLoading={isLoading}
-          searchType={searchType}
-        />
+        <SearchResults results={searchResults} isLoading={isLoading} />
       )}
     </Grid>
   );

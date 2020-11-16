@@ -1,12 +1,21 @@
 import React from "react";
 
-import { List, Typography, ListItemSecondaryAction } from "@material-ui/core";
+import {
+  Link,
+  Avatar,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Typography,
+  ListItemSecondaryAction
+} from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 
 import axios from "axios";
 import { useSpotifyQuery } from "./hooks/spotify-query";
 
-import { SpotifyListItem } from "./SpotifyListItem";
+import { SpotifyListSkeleton } from "./SpotifyListSkeleton";
 import { AddToPlaylistButton } from "./AddToPlaylistButton";
 
 import { makeStyles } from "@material-ui/styles";
@@ -29,15 +38,6 @@ export function ArtistTopTracks({ id, name }) {
     () => axios(`/artists/${id}/top-tracks?${searchParams}`)
   );
 
-  const topTracks =
-    data?.data?.tracks.map(track => ({
-      id: track.id,
-      image: track.album.images[0],
-      title: track.name,
-      subtitle: track.album.name,
-      type: track.type
-    })) || [];
-
   return (
     <>
       <Typography
@@ -46,18 +46,50 @@ export function ArtistTopTracks({ id, name }) {
         gutterBottom
         className={classes.title}
       >
-        {name ? `Top Faixas de ${name}` : <Skeleton />}
+        {isLoading ? <Skeleton /> : `Top Faixas de ${name}`}
       </Typography>
 
-      <List>
-        {topTracks.map(track => (
-          <SpotifyListItem key={track.id} isLoading={isLoading} item={track}>
-            <ListItemSecondaryAction>
-              <AddToPlaylistButton tracks={[track.id]} />
-            </ListItemSecondaryAction>
-          </SpotifyListItem>
-        ))}
-      </List>
+      {isLoading ? (
+        <SpotifyListSkeleton />
+      ) : (
+        <List>
+          {data?.data?.tracks.map(track => {
+            const title = (
+              <Link
+                color="inherit"
+                underline="none"
+                href={track.external_urls.spotify}
+              >
+                {track.name}
+              </Link>
+            );
+
+            const subtitle = (
+              <Link
+                color="inherit"
+                underline="none"
+                href={track.album.external_urls.spotify}
+              >
+                {track.album.name}
+              </Link>
+            );
+
+            return (
+              <ListItem key={track.id}>
+                <ListItemAvatar>
+                  <Avatar alt={track.name} src={track.album.images[0].url} />
+                </ListItemAvatar>
+
+                <ListItemText secondary={subtitle}>{title}</ListItemText>
+
+                <ListItemSecondaryAction>
+                  <AddToPlaylistButton tracks={[track.id]} />
+                </ListItemSecondaryAction>
+              </ListItem>
+            );
+          })}
+        </List>
+      )}
     </>
   );
 }

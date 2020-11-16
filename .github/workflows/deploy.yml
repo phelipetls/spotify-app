@@ -17,7 +17,7 @@ jobs:
         run: npm run build
 
       - name: Move _redirects to build folder
-        run: mv _redirects build
+        run: echo "/*    /index.html   200" > ./build/_redirects
 
       - name: Deploy to Netlify
         uses: jsmrcaga/action-netlify-deploy@v1.1.0

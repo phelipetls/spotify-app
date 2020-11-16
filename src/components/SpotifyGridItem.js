@@ -4,12 +4,16 @@ import {
   Card,
   CardMedia,
   CardContent,
+  CardActions,
+  IconButton,
   Typography,
   Grid
 } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 
 import { Link as RouterLink } from "react-router-dom";
+
+import { AddToPlaylistButton } from "./AddToPlaylistButton";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -66,6 +70,12 @@ export function SpotifyGridItem(props) {
           {title}
           {subtitle}
         </CardContent>
+        {/* Allow add to playlist button if showing a track */}
+        {item.type === "track" && (
+          <CardActions>
+            <AddToPlaylistButton tracks={[item.id]} size="small" />
+          </CardActions>
+        )}
       </Card>
     </Grid>
   );

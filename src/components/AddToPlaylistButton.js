@@ -5,7 +5,7 @@ import { PlaylistAdd } from "@material-ui/icons";
 
 import { usePlaylists } from "./context/playlists";
 
-export function AddToPlaylistButton({ tracks }) {
+export function AddToPlaylistButton({ tracks, ...rest }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const { playlists, dispatch } = usePlaylists();
@@ -30,6 +30,7 @@ export function AddToPlaylistButton({ tracks }) {
         aria-label="adicione à playlist"
         onClick={handleClick}
         title="Adicione a uma playlist"
+        {...rest}
       >
         <PlaylistAdd />
       </IconButton>

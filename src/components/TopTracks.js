@@ -1,9 +1,22 @@
 import React from "react";
 
+import { CardActions, Grid } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
+
 import axios from "axios";
 import { useSpotifyQuery } from "./hooks/spotify-query";
 
 import { SpotifyGrid } from "./SpotifyGrid";
+import { SpotifyGridTitle } from "./SpotifyGridTitle";
+import { SpotifyGridItemSkeleton } from "./SpotifyGridItemSkeleton";
+
+import { SpotifyCard } from "./SpotifyCard";
+import { SpotifyCardMedia } from "./SpotifyCardMedia";
+import { SpotifyCardTitle } from "./SpotifyCardTitle";
+import { SpotifyCardSubtitle } from "./SpotifyCardSubtitle";
+import { SpotifyCardContent } from "./SpotifyCardContent";
+
+import { AddToPlaylistButton } from "./AddToPlaylistButton";
 
 export function TopTracks() {
   const { isLoading, data = {} } = useSpotifyQuery(
@@ -11,18 +24,51 @@ export function TopTracks() {
     () => axios.get("me/top/tracks")
   );
 
-  const items = data?.data?.items || [];
+  if (isLoading)
+    return (
+      <>
+        <SpotifyGridTitle>
+          <Skeleton />
+        </SpotifyGridTitle>
 
-  const tracks = items.map(track => ({
-    title: track.name,
-    subtitle: track.artists[0].name,
-    id: track.id,
-    spotify_url: track.external_urls.spotify,
-    image: track.album.images[0],
-    type: "track"
-  }));
+        <SpotifyGrid>
+          {[1, 2, 3].map(id => (
+            <SpotifyGridItemSkeleton key={id} />
+          ))}
+        </SpotifyGrid>
+      </>
+    );
+
+  const tracks = data?.data?.items || [];
 
   return (
-    <SpotifyGrid title="Top Faixas" items={tracks} isLoading={isLoading} />
+    <>
+      <SpotifyGridTitle>Top Faixas</SpotifyGridTitle>
+
+      <SpotifyGrid items={tracks}>
+        {tracks.map(track => (
+          <Grid item key={track.id}>
+            <SpotifyCard>
+              <SpotifyCardMedia
+                alt={track.name}
+                src={track.album.images[0].url}
+              />
+
+              <SpotifyCardContent>
+                <SpotifyCardTitle>{track.name}</SpotifyCardTitle>
+
+                <SpotifyCardSubtitle>
+                  {track.artists[0].name}
+                </SpotifyCardSubtitle>
+              </SpotifyCardContent>
+
+              <CardActions>
+                <AddToPlaylistButton tracks={[track.id]} size="small" />
+              </CardActions>
+            </SpotifyCard>
+          </Grid>
+        ))}
+      </SpotifyGrid>
+    </>
   );
 }

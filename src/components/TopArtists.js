@@ -1,9 +1,20 @@
 import React from "react";
 
+import { Grid } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
+import { Link as RouterLink } from "react-router-dom";
+
 import axios from "axios";
 import { useSpotifyQuery } from "./hooks/spotify-query";
 
 import { SpotifyGrid } from "./SpotifyGrid";
+import { SpotifyGridTitle } from "./SpotifyGridTitle";
+import { SpotifyGridItemSkeleton } from "./SpotifyGridItemSkeleton";
+
+import { SpotifyCard } from "./SpotifyCard";
+import { SpotifyCardMedia } from "./SpotifyCardMedia";
+import { SpotifyCardTitle } from "./SpotifyCardTitle";
+import { SpotifyCardContent } from "./SpotifyCardContent";
 
 export function TopArtists() {
   const { isLoading, data = {} } = useSpotifyQuery(
@@ -11,17 +22,45 @@ export function TopArtists() {
     () => axios.get("me/top/artists")
   );
 
-  const items = data?.data?.items || [];
+  if (isLoading)
+    return (
+      <>
+        <SpotifyGridTitle>
+          <Skeleton />
+        </SpotifyGridTitle>
 
-  const artists = items.map(artist => ({
-    title: artist.name,
-    id: artist.id,
-    spotify_url: artist.external_urls.spotify,
-    image: artist.images[0],
-    type: "artist"
-  }));
+        <SpotifyGrid>
+          {[1, 2, 3].map(id => (
+            <SpotifyGridItemSkeleton key={id} />
+          ))}
+        </SpotifyGrid>
+      </>
+    );
+
+  const artists = data?.data?.items || [];
 
   return (
-    <SpotifyGrid title="Top Artistas" items={artists} isLoading={isLoading} />
+    <>
+      <SpotifyGridTitle>Top Artistas</SpotifyGridTitle>
+
+      <SpotifyGrid items={artists}>
+        {artists.map(artist => (
+          <RouterLink to={`/artist/${artist.id}`}>
+            <Grid item key={artist.id}>
+              <SpotifyCard>
+                <SpotifyCardMedia
+                  alt={artist.name}
+                  src={artist.images[0].url}
+                />
+
+                <SpotifyCardContent>
+                  <SpotifyCardTitle>{artist.name}</SpotifyCardTitle>
+                </SpotifyCardContent>
+              </SpotifyCard>
+            </Grid>
+          </RouterLink>
+        ))}
+      </SpotifyGrid>
+    </>
   );
 }

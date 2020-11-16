@@ -16,3 +16,7 @@ layout.
   - Browse through artists albums and top tracks.
   - Browse through albums tracks.
   - Search artists, albums and tracks.
+
+# Demo
+
+![Demo](./demo.gif)

@@ -47,7 +47,10 @@ export function AddToPlaylistButton({ tracks, ...rest }) {
 
         {playlists.length > 0 &&
           playlists.map(playlist => (
-            <MenuItem onClick={() => handleClose(playlist.id)}>
+            <MenuItem
+              key={playlist.id}
+              onClick={() => handleClose(playlist.id)}
+            >
               {playlist.name}
             </MenuItem>
           ))}

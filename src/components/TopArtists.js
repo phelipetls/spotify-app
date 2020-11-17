@@ -45,20 +45,20 @@ export function TopArtists() {
 
       <SpotifyGrid items={artists}>
         {artists.map(artist => (
-          <RouterLink to={`/artist/${artist.id}`}>
-            <Grid item key={artist.id}>
-              <SpotifyCard>
-                <SpotifyCardMedia
-                  alt={artist.name}
-                  src={artist.images[0].url}
-                />
+          <Grid
+            item
+            key={artist.id}
+            component={RouterLink}
+            to={`/artist/${artist.id}`}
+          >
+            <SpotifyCard>
+              <SpotifyCardMedia alt={artist.name} src={artist.images[0].url} />
 
-                <SpotifyCardContent>
-                  <SpotifyCardTitle>{artist.name}</SpotifyCardTitle>
-                </SpotifyCardContent>
-              </SpotifyCard>
-            </Grid>
-          </RouterLink>
+              <SpotifyCardContent>
+                <SpotifyCardTitle>{artist.name}</SpotifyCardTitle>
+              </SpotifyCardContent>
+            </SpotifyCard>
+          </Grid>
         ))}
       </SpotifyGrid>
     </>

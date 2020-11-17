@@ -100,7 +100,7 @@ export function AlbumTracksTable(props) {
             <SkeletonTable nRows={10} nColumns={4} />
           ) : (
             tracks.map(track => (
-              <TableRow>
+              <TableRow key={track.id}>
                 <TableCell
                   padding="checkbox"
                   onClick={e => handleClick(e, track.id)}

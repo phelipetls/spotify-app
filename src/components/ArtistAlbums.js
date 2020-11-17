@@ -51,25 +51,25 @@ export function ArtistAlbums({ id }) {
           const subtitle = `${totalTracks} Faixas · ${releaseYear}`;
 
           return (
-            <RouterLink to={`/album/${album.id}`}>
-              <Grid item key={album.id}>
-                <SpotifyCard>
-                  <SpotifyCardMedia
-                    alt={album.name}
-                    src={album.images[0].url}
-                  />
+            <Grid
+              item
+              key={album.id}
+              component={RouterLink}
+              to={`/album/${album.id}`}
+            >
+              <SpotifyCard>
+                <SpotifyCardMedia alt={album.name} src={album.images[0].url} />
 
-                  <SpotifyCardContent>
-                    <SpotifyCardTitle>{album.name}</SpotifyCardTitle>
-                    <SpotifyCardSubtitle>{subtitle}</SpotifyCardSubtitle>
+                <SpotifyCardContent>
+                  <SpotifyCardTitle>{album.name}</SpotifyCardTitle>
+                  <SpotifyCardSubtitle>{subtitle}</SpotifyCardSubtitle>
 
-                    <SpotifyCardSubtitle>
-                      {album.artists[0].name}
-                    </SpotifyCardSubtitle>
-                  </SpotifyCardContent>
-                </SpotifyCard>
-              </Grid>
-            </RouterLink>
+                  <SpotifyCardSubtitle>
+                    {album.artists[0].name}
+                  </SpotifyCardSubtitle>
+                </SpotifyCardContent>
+              </SpotifyCard>
+            </Grid>
           );
         })}
       </SpotifyGrid>

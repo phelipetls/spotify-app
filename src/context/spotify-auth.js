@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const AuthContext = React.createContext();
+export const AuthContext = React.createContext();
 
 export function SpotifyAuthProvider({ children, ...rest }) {
   const [token, setToken] = useState(

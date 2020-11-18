@@ -1,12 +1,21 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
+import { ThemeProvider } from "@material-ui/core/styles";
+import { theme } from "./styles/Theme";
+
 import { MemoryRouter as Router } from "react-router-dom";
 
 import App from "./App";
 
 it("renders login page when unauthenticated", async () => {
-  render(<App />, { wrapper: Router });
+  render(
+    <ThemeProvider theme={theme}>
+      <Router>
+        <App />
+      </Router>
+    </ThemeProvider>
+  );
 
   await waitFor(() =>
     expect(screen.getByTestId("login-button")).toBeInTheDocument()
@@ -21,7 +30,9 @@ it("stores token in localStorage when redirected to /auth by spotify", async () 
 
   render(
     <Router initialEntries={[SPOTIFY_AUTHENTICATION_URL, "/"]}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </Router>
   );
 

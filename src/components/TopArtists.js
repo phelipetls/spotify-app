@@ -39,7 +39,7 @@ export function TopArtists() {
     <>
       <SpotifyGridTitle>Top Artistas</SpotifyGridTitle>
 
-      <SpotifyGrid items={artists}>
+      <SpotifyGrid>
         {artists.map(artist => (
           <Grid
             item

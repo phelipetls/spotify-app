@@ -40,7 +40,7 @@ export function ArtistAlbums({ id }) {
     <>
       <SpotifyGridTitle>Álbuns</SpotifyGridTitle>
 
-      <SpotifyGrid items={albums}>
+      <SpotifyGrid>
         {albums.map(album => {
           const releaseYear = album.release_date.slice(0, 4);
           const totalTracks = album.total_tracks;

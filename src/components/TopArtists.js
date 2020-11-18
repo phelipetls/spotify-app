@@ -9,7 +9,7 @@ import { useSpotifyQuery } from "./hooks/spotify-query";
 
 import { SpotifyGrid } from "./SpotifyGrid";
 import { SpotifyGridTitle } from "./SpotifyGridTitle";
-import { SpotifyGridItemSkeleton } from "./SpotifyGridItemSkeleton";
+import { SpotifyGridSkeleton } from "./SpotifyGridSkeleton";
 
 import { SpotifyCard } from "./SpotifyCard";
 import { SpotifyCardMedia } from "./SpotifyCardMedia";
@@ -29,11 +29,7 @@ export function TopArtists() {
           <Skeleton />
         </SpotifyGridTitle>
 
-        <SpotifyGrid>
-          {[1, 2, 3].map(id => (
-            <SpotifyGridItemSkeleton key={id} />
-          ))}
-        </SpotifyGrid>
+        <SpotifyGridSkeleton />
       </>
     );
 

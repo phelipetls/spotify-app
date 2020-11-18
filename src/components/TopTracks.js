@@ -8,7 +8,7 @@ import { useSpotifyQuery } from "./hooks/spotify-query";
 
 import { SpotifyGrid } from "./SpotifyGrid";
 import { SpotifyGridTitle } from "./SpotifyGridTitle";
-import { SpotifyGridItemSkeleton } from "./SpotifyGridItemSkeleton";
+import { SpotifyGridSkeleton } from "./SpotifyGridSkeleton";
 
 import { SpotifyCard } from "./SpotifyCard";
 import { SpotifyCardMedia } from "./SpotifyCardMedia";
@@ -31,11 +31,7 @@ export function TopTracks() {
           <Skeleton />
         </SpotifyGridTitle>
 
-        <SpotifyGrid>
-          {[1, 2, 3].map(id => (
-            <SpotifyGridItemSkeleton key={id} />
-          ))}
-        </SpotifyGrid>
+        <SpotifyGridSkeleton />
       </>
     );
 
@@ -45,7 +41,7 @@ export function TopTracks() {
     <>
       <SpotifyGridTitle>Top Faixas</SpotifyGridTitle>
 
-      <SpotifyGrid items={tracks}>
+      <SpotifyGrid>
         {tracks.map(track => (
           <Grid item key={track.id}>
             <SpotifyCard>

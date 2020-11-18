@@ -1,26 +1,12 @@
 import React from "react";
 
-import { ThemeProvider } from "@material-ui/core/styles";
-import { theme } from "../../styles/Theme";
-
-import { MemoryRouter as Router } from "react-router-dom";
-
-import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
-
-import { PlaylistsProvider } from "../context/playlists";
 import { Playlists } from "../Playlists";
 
+import { render, screen } from "../../test-utils";
+import "@testing-library/jest-dom/extend-expect";
+
 it("should render successfully", async () => {
-  render(
-    <ThemeProvider theme={theme}>
-      <PlaylistsProvider>
-        <Router>
-          <Playlists />
-        </Router>
-      </PlaylistsProvider>
-    </ThemeProvider>
-  );
+  render(<Playlists />);
 
   // A button to add a playlist should be on the screen
   const addPlaylistButton = screen.getByTestId("add-playlist-button");

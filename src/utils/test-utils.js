@@ -1,10 +1,10 @@
 import { render } from "@testing-library/react";
 
-import { SpotifyAuthProvider } from "./context/spotify-auth";
-import { PlaylistsProvider } from "./context/playlists";
+import { SpotifyAuthProvider } from "../context/spotify-auth";
+import { PlaylistsProvider } from "../context/playlists";
 
 import { ThemeProvider } from "@material-ui/core/styles";
-import { theme } from "./styles/Theme";
+import { theme } from "../styles/Theme";
 
 import { MemoryRouter as Router } from "react-router-dom";
 

@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "../../test-utils";
+import { render, screen, waitFor } from "test-utils";
 import "@testing-library/jest-dom/extend-expect";
 
 import App from "../../App";

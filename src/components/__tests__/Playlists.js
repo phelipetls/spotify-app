@@ -2,7 +2,7 @@ import React from "react";
 
 import { Playlists } from "../Playlists";
 
-import { render, screen } from "../../test-utils";
+import { render, screen } from "test-utils";
 import "@testing-library/jest-dom/extend-expect";
 
 it("should render successfully", async () => {

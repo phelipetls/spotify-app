@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Menu, MenuItem, IconButton } from "@material-ui/core";
 import { PlaylistAdd } from "@material-ui/icons";
 
-import { usePlaylists } from "./context/playlists";
+import { usePlaylists } from "../context/playlists";
 
 export function AddToPlaylistButton({ tracks, ...rest }) {
   const [anchorEl, setAnchorEl] = useState(null);

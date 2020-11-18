@@ -2,7 +2,7 @@ import React from "react";
 
 import { Typography, List, ListItem, Divider } from "@material-ui/core";
 
-import { usePlaylists } from "./context/playlists";
+import { usePlaylists } from "../context/playlists";
 
 import { AddPlaylist } from "./AddPlaylist";
 import { PlaylistsListItem } from "./PlaylistsListItem";
@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
  * Show current playlists.
  *
  * The playlists are provided by the playlists context, which is defined in
- * `./context/playlists.js`.
+ * `../context/playlists.js`.
  *
  */
 export function Playlists() {

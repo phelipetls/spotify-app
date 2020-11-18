@@ -12,7 +12,7 @@ import { Delete, Edit } from "@material-ui/icons";
 
 import { Link as RouterLink } from "react-router-dom";
 
-import { usePlaylists } from "./context/playlists";
+import { usePlaylists } from "../context/playlists";
 
 export function PlaylistsListItem({ name: defaultName, id }) {
   const { dispatch } = usePlaylists();

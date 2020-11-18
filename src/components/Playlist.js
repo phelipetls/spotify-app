@@ -3,7 +3,7 @@ import React from "react";
 import { Typography } from "@material-ui/core";
 
 import { useParams } from "react-router-dom";
-import { usePlaylists } from "./context/playlists";
+import { usePlaylists } from "../context/playlists";
 
 import { PlaylistTrackList } from "./PlaylistTrackList";
 

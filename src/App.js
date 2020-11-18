@@ -5,9 +5,9 @@ import "./App.css";
 import { Container } from "@material-ui/core";
 
 import { Route, Switch } from "react-router-dom";
-import { PrivateRoute } from "./components/PrivateRoute";
 
-import { SpotifyAuthProvider } from "./context/spotify-auth";
+import { AppLayout } from "./components/AppLayout";
+import { PrivateRoute } from "./components/PrivateRoute";
 import { FullPageLoading } from "./components/FullPageLoading";
 
 const AuthPage = React.lazy(() => import("./components/AuthPage"));
@@ -22,9 +22,9 @@ const Playlist = React.lazy(() => import("./components/Playlist"));
 
 function App() {
   return (
-    <SpotifyAuthProvider>
-      <Container maxWidth="xs" style={{ height: "100vh" }}>
-        <Switch>
+    <Container maxWidth="xs" style={{ height: "100vh" }}>
+      <Switch>
+        <AppLayout>
           <Suspense fallback={<FullPageLoading />}>
             <Route exact path="/auth" component={AuthPage} />
             <Route exact path="/login" component={LoginPage} />
@@ -36,9 +36,9 @@ function App() {
             <PrivateRoute exact path="/album/:id" component={Album} />
             <PrivateRoute exact path="/playlist/:id" component={Playlist} />
           </Suspense>
-        </Switch>
-      </Container>
-    </SpotifyAuthProvider>
+        </AppLayout>
+      </Switch>
+    </Container>
   );
 }
 

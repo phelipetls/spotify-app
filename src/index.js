@@ -12,6 +12,9 @@ import { theme } from "./styles/Theme.js";
 
 import { QueryCache, ReactQueryCacheProvider } from "react-query";
 
+import { SpotifyAuthProvider } from "./context/spotify-auth";
+import { PlaylistsProvider } from "./context/playlists";
+
 const queryCache = new QueryCache({
   defaultConfig: {
     queries: {
@@ -20,15 +23,23 @@ const queryCache = new QueryCache({
   }
 });
 
+const ContextWrapper = ({ children }) => (
+  <ThemeProvider theme={theme}>
+    <PlaylistsProvider>
+      <SpotifyAuthProvider>{children}</SpotifyAuthProvider>
+    </PlaylistsProvider>
+  </ThemeProvider>
+);
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <ReactQueryCacheProvider queryCache={queryCache}>
+      <ReactQueryCacheProvider queryCache={queryCache}>
+        <ContextWrapper>
+          <CssBaseline />
           <App />
-        </ReactQueryCacheProvider>
-      </ThemeProvider>
+        </ContextWrapper>
+      </ReactQueryCacheProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

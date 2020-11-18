@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from "react";
-import { getRandomString } from "../../utils/get-random-string";
+import { getRandomString } from "../utils/get-random-string";
 
 const PlaylistsContext = React.createContext();
 

@@ -23,7 +23,7 @@ export function NavigationBottom() {
       value={value}
       onChange={handleChange}
       showLabels
-      data-testid="navigation"
+      data-testid="navigation-bottom"
     >
       <BottomNavigationAction
         component={RouterLink}

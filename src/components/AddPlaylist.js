@@ -3,7 +3,7 @@ import React from "react";
 import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 
-import { usePlaylists } from "./context/playlists";
+import { usePlaylists } from "../context/playlists";
 
 export function AddPlaylist() {
   const { dispatch } = usePlaylists();

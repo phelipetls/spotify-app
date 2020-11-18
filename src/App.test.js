@@ -1,6 +1,8 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
+import { SpotifyAuthProvider } from "./context/spotify-auth";
+
 import { ThemeProvider } from "@material-ui/core/styles";
 import { theme } from "./styles/Theme";
 
@@ -22,28 +24,30 @@ it("renders login page when unauthenticated", async () => {
   );
 });
 
-it("stores token in localStorage when redirected to /auth by spotify", async () => {
-  const SPOTIFY_AUTHENTICATION_URL =
-    "/auth#access_token=FAKE_ACCESS_TOKEN&state=RANDOM_STRINGS&scope=read-user";
-
-  jest.spyOn(window.localStorage.__proto__, "setItem");
+it("checks if navigaiton element", async () => {
+  const token = "FAKE_ACCESS_TOKEN";
 
   render(
-    <Router initialEntries={[SPOTIFY_AUTHENTICATION_URL, "/"]}>
+    <Router initialEntries={["/"]}>
       <ThemeProvider theme={theme}>
-        <App />
+        <SpotifyAuthProvider value={{ token }}>
+          <App />
+        </SpotifyAuthProvider>
       </ThemeProvider>
     </Router>
   );
 
-  await waitFor(() =>
-    expect(window.localStorage.setItem).toBeCalledWith(
-      "spotifyToken",
-      "FAKE_ACCESS_TOKEN"
-    )
-  );
-
   // Test if user is logged in by checking if the <Navigation /> component is
   // in the document. It has a data-testid HTMl attribute equal to 'navigation'.
-  expect(screen.getByTestId("navigation")).toBeInTheDocument();
+
+  // await waitFor(() => {
+  //   expect(screen.getByTestId("navigation-top")).toBeInTheDocument()
+  // });
+
+  expect(screen.getByTestId("navigation-bottom")).toBeInTheDocument();
+  // await waitFor(() => {
+  //   expect(screen.getByTestId("navigation-bottom")).toBeInTheDocument();
+  // });
+
+  screen.debug();
 });

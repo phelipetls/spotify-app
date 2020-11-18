@@ -81,7 +81,7 @@ export function NavigationTop() {
   );
 
   return (
-    <AppBar component={Paper} color="inherit" position="static">
+    <AppBar component={Paper} color="inherit" position="static" data-testid="navigation-top">
       <Toolbar component={Grid}>
         <Grid item container alignItems="center">
           {avatar}

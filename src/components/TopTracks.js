@@ -1,6 +1,7 @@
 import React from "react";
 
-import { CardActions, Grid } from "@material-ui/core";
+import { CardActions, Grid, IconButton, Link } from "@material-ui/core";
+import { PlayArrow } from "@material-ui/icons";
 import { Skeleton } from "@material-ui/lab";
 
 import axios from "axios";
@@ -59,6 +60,12 @@ export function TopTracks() {
               </SpotifyCardContent>
 
               <CardActions>
+                <Link href={track.external_urls.spotify}>
+                  <IconButton size="small">
+                    <PlayArrow />
+                  </IconButton>
+                </Link>
+
                 <AddToPlaylistButton tracks={[track.id]} size="small" />
               </CardActions>
             </SpotifyCard>

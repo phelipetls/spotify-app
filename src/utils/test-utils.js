@@ -10,16 +10,16 @@ import { MemoryRouter as Router } from "react-router-dom";
 
 const customRender = (
   component,
-  { routerProps, authProps, ...renderOptions } = {}
+  { routerProps, authProviderValue, ...renderOptions } = {}
 ) => {
   return render(
     <ThemeProvider theme={theme}>
       <Router {...routerProps}>
         <SpotifyAuthProvider
           value={{
-            token: "MY_ACCESS_TOKEN"
+            token: "TOKEN", // authenticated by default
+            ...authProviderValue
           }}
-          {...authProps}
         >
           <PlaylistsProvider>{component}</PlaylistsProvider>
         </SpotifyAuthProvider>

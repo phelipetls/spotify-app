@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import axios from "axios";
 import { useQuery } from "react-query";
 import { useAuth } from "../../context/spotify-auth";
@@ -17,9 +19,14 @@ export function useSpotifyQuery(queryKeys, fetcher) {
     retry: false
   });
 
-  if (response.isError && response?.error?.response?.status === 401) {
-    removeToken("");
-  }
+  const { isError, error } = response;
+
+
+  useEffect(() => {
+    if (isError && error?.response?.status === 401) {
+      removeToken();
+    }
+  }, [isError, error, removeToken]);
 
   return response;
 }

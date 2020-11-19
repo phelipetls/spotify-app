@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Redirect } from "react-router-dom";
 
 import { useLocation } from "react-router-dom";
-import { useAuth } from "../context/spotify-auth";
+import { useAuth } from "../context/auth";
 import { getToken } from "../utils/get-token";
 
 /**

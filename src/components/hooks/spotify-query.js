@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import axios from "axios";
 import { useQuery } from "react-query";
-import { useAuth } from "../../context/spotify-auth";
+import { useAuth } from "../../context/auth";
 
 const BASE_URL = "https://api.spotify.com/v1/";
 

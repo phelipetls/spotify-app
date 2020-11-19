@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { Redirect } from "react-router-dom";
 
-import { useAuth } from "../context/spotify-auth";
+import { useAuth } from "../context/auth";
 
 /**
  * To logout, just remove the token from the context provider.

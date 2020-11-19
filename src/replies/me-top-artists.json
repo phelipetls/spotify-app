@@ -1,0 +1,226 @@
+{
+  "items": [
+    {
+      "external_urls": {
+        "spotify": "https://open.spotify.com/artist/4SQdUpG4f7UbkJG3cJ2Iyj"
+      },
+      "followers": {
+        "href": null,
+        "total": 158066
+      },
+      "genres": [
+        "ai",
+        "art pop",
+        "dance pop",
+        "deconstructed club",
+        "electropop",
+        "escape room",
+        "experimental pop",
+        "fluxwork"
+      ],
+      "href": "https://api.spotify.com/v1/artists/4SQdUpG4f7UbkJG3cJ2Iyj",
+      "id": "4SQdUpG4f7UbkJG3cJ2Iyj",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/c56cf774b9ffa40e0af35ff9b0c03162e02a7968",
+          "width": 640
+        },
+        {
+          "height": 320,
+          "url": "https://i.scdn.co/image/f6b4086b78f80f3d1a08c6bf4cae1c34d45bd8f6",
+          "width": 320
+        },
+        {
+          "height": 160,
+          "url": "https://i.scdn.co/image/21f7551bb66e0df45e53eca52aefd14b8f44ef9e",
+          "width": 160
+        }
+      ],
+      "name": "Arca",
+      "popularity": 57,
+      "type": "artist",
+      "uri": "spotify:artist:4SQdUpG4f7UbkJG3cJ2Iyj"
+    },
+    {
+      "external_urls": {
+        "spotify": "https://open.spotify.com/artist/0utS63XytOEVN1EtzWhJpG"
+      },
+      "followers": {
+        "href": null,
+        "total": 105869
+      },
+      "genres": [
+        "chillwave",
+        "dream pop",
+        "indie pop",
+        "indie rock",
+        "lund indie",
+        "metropopolis",
+        "modern dream pop",
+        "nu gaze",
+        "shoegaze",
+        "swedish indie pop"
+      ],
+      "href": "https://api.spotify.com/v1/artists/0utS63XytOEVN1EtzWhJpG",
+      "id": "0utS63XytOEVN1EtzWhJpG",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/32644ea884451829e1690cfedc82bfd581c308ac",
+          "width": 640
+        },
+        {
+          "height": 320,
+          "url": "https://i.scdn.co/image/d22485ecdaf8dcbdfc4dd617e96a12f1636ce035",
+          "width": 320
+        },
+        {
+          "height": 160,
+          "url": "https://i.scdn.co/image/8c59dfdfddb30480e2034c5b3be9f2179128f588",
+          "width": 160
+        }
+      ],
+      "name": "The Radio Dept.",
+      "popularity": 51,
+      "type": "artist",
+      "uri": "spotify:artist:0utS63XytOEVN1EtzWhJpG"
+    },
+    {
+      "external_urls": {
+        "spotify": "https://open.spotify.com/artist/2pAWfrd7WFF3XhVt9GooDL"
+      },
+      "followers": {
+        "href": null,
+        "total": 658008
+      },
+      "genres": [
+        "alternative hip hop",
+        "east coast hip hop",
+        "hip hop",
+        "rap"
+      ],
+      "href": "https://api.spotify.com/v1/artists/2pAWfrd7WFF3XhVt9GooDL",
+      "id": "2pAWfrd7WFF3XhVt9GooDL",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/15af59cba480df7efac4be9706428e82f32f4dfd",
+          "width": 640
+        },
+        {
+          "height": 320,
+          "url": "https://i.scdn.co/image/8384218e9d580c65992bf64cbc0eacb22e200602",
+          "width": 320
+        },
+        {
+          "height": 160,
+          "url": "https://i.scdn.co/image/9e8659627a0458faf11ddede64a86dc12542ce69",
+          "width": 160
+        }
+      ],
+      "name": "MF DOOM",
+      "popularity": 72,
+      "type": "artist",
+      "uri": "spotify:artist:2pAWfrd7WFF3XhVt9GooDL"
+    },
+    {
+      "external_urls": {
+        "spotify": "https://open.spotify.com/artist/0AsThoR4KZSVktALiNcQwW"
+      },
+      "followers": {
+        "href": null,
+        "total": 722297
+      },
+      "genres": [
+        "alternative r&b",
+        "dance pop",
+        "pop",
+        "pop dance",
+        "pop rap",
+        "post-teen pop",
+        "r&b"
+      ],
+      "href": "https://api.spotify.com/v1/artists/0AsThoR4KZSVktALiNcQwW",
+      "id": "0AsThoR4KZSVktALiNcQwW",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/0dae91ec51af4d286edc16aa6dd4d1948c6dae90",
+          "width": 640
+        },
+        {
+          "height": 320,
+          "url": "https://i.scdn.co/image/9a08af1ed129c08dbd1a0c8a76462739ca4725b7",
+          "width": 320
+        },
+        {
+          "height": 160,
+          "url": "https://i.scdn.co/image/e39c09a4927f7f033645e8aad4581ca3b74b8361",
+          "width": 160
+        }
+      ],
+      "name": "Chloe x Halle",
+      "popularity": 72,
+      "type": "artist",
+      "uri": "spotify:artist:0AsThoR4KZSVktALiNcQwW"
+    },
+    {
+      "external_urls": {
+        "spotify": "https://open.spotify.com/artist/5EYkvHZuGM3pwU3DZUrrZ3"
+      },
+      "followers": {
+        "href": null,
+        "total": 53475
+      },
+      "genres": [
+        "alternative rock",
+        "chicago hardcore",
+        "chicago punk",
+        "dance-punk",
+        "experimental",
+        "experimental rock",
+        "industrial",
+        "industrial rock",
+        "noise rock",
+        "post-hardcore",
+        "post-punk",
+        "punk"
+      ],
+      "href": "https://api.spotify.com/v1/artists/5EYkvHZuGM3pwU3DZUrrZ3",
+      "id": "5EYkvHZuGM3pwU3DZUrrZ3",
+      "images": [
+        {
+          "height": 687,
+          "url": "https://i.scdn.co/image/b7aa32a90a465913b9173ac2b360f44558ec094a",
+          "width": 1000
+        },
+        {
+          "height": 440,
+          "url": "https://i.scdn.co/image/68b94269698919e0aac2242fa34a44cd855225c7",
+          "width": 640
+        },
+        {
+          "height": 137,
+          "url": "https://i.scdn.co/image/967a27c817e261331baa53669b695782a1dd05eb",
+          "width": 199
+        },
+        {
+          "height": 44,
+          "url": "https://i.scdn.co/image/11724d3604a83cf79e1d9242fd7b1c2ad0d5faa7",
+          "width": 64
+        }
+      ],
+      "name": "Big Black",
+      "popularity": 42,
+      "type": "artist",
+      "uri": "spotify:artist:5EYkvHZuGM3pwU3DZUrrZ3"
+    }
+  ],
+  "total": 5,
+  "limit": 20,
+  "offset": 0,
+  "previous": null,
+  "href": "https://api.spotify.com/v1/me/top/artists",
+  "next": null
+}

@@ -11,3 +11,15 @@ import nock from "nock";
 import http from "axios/lib/adapters/http";
 
 axios.defaults.adapter = http;
+
+nock("https://api.spotify.com/v1")
+  .get("/me")
+  .replyWithFile(200, __dirname + "/replies/me.json");
+
+nock("https://api.spotify.com/v1")
+  .get("/me/top/tracks")
+  .replyWithFile(200, __dirname + "/replies/me-top-tracks.json");
+
+nock("https://api.spotify.com/v1")
+  .get("/me/top/artists")
+  .replyWithFile(200, __dirname + "/replies/me-top-artists.json");

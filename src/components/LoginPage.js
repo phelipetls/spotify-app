@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
  *
  * Check the getAuthUrl for how the Spotify URL is built.
  *
- * This uses the Implicit Grant Flow method of authorization. 
+ * This uses the Implicit Grant Flow method of authorization.
  * @see https://developer.spotify.com/documentation/general/guides/authorization-guide/#implicit-grant-flow
  */
 export function LoginPage() {
@@ -49,7 +49,7 @@ export function LoginPage() {
       </Typography>
 
       <Link href={authUrl}>
-        <Button variant="contained" color="primary" data-testid="login-button">
+        <Button variant="contained" color="primary">
           Login
         </Button>
       </Link>

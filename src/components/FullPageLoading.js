@@ -19,6 +19,7 @@ export function FullPageLoading() {
       alignItems="center"
       justify="center"
       className={classes.root}
+      data-testid="loading"
     >
       <CircularProgress />
     </Grid>

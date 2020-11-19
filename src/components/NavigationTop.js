@@ -81,7 +81,7 @@ export function NavigationTop() {
   );
 
   return (
-    <AppBar component={Paper} color="inherit" position="static" data-testid="navigation-top">
+    <AppBar component={Paper} color="inherit" position="static">
       <Toolbar component={Grid}>
         <Grid item container alignItems="center">
           {avatar}
@@ -92,7 +92,7 @@ export function NavigationTop() {
         </Grid>
 
         <Link component={RouterLink} to="/logout" title="Logout">
-          <IconButton data-testid="logout">
+          <IconButton>
             <PowerSettingsNew />
           </IconButton>
         </Link>

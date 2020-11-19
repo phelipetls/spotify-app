@@ -3,17 +3,47 @@ import "@testing-library/jest-dom/extend-expect";
 
 import App from "./App";
 
-it("renders login page when unauthenticated", () => {
+it("should render home page if the user is authenticated", async () => {
+  // A token is provided by default
   render(<App />);
 
-  waitFor(() => expect(screen.getByTestId("login-button")).toBeInTheDocument());
+  await waitFor(() =>
+    expect(screen.getByRole("link", { name: /logout/i })).toBeInTheDocument()
+  );
 });
 
-it("checks if navigaiton element", async () => {
-  render(<App />);
+it("should render login button when unauthenticated", async () => {
+  // Remove token to simulate a user being unauthenticated
+  render(<App />, { authProviderValue: { token: "" } });
 
-  // Test if user is logged in by checking if the <Navigation /> component is
-  // in the document. It has a data-testid HTMl attribute equal to 'navigation'.
-  expect(screen.getByTestId("navigation-top")).toBeInTheDocument();
-  expect(screen.getByTestId("navigation-bottom")).toBeInTheDocument();
+  await waitFor(() =>
+    expect(screen.getByRole("link", { name: /login/i })).toBeInTheDocument()
+  );
+});
+
+const mockedSetToken = jest.fn();
+
+it("should log in after hitting a URL containing an access token", async () => {
+  // Simulate hitting the callback URL we pass to Spotify.
+  // It should extract the access token from the URL and use it until it expires.
+  render(<App />, {
+    authProviderValue: { token: "", setToken: mockedSetToken },
+    routerProps: { initialEntries: ["/auth#access_token=CALLBACK_TOKEN"] }
+  });
+
+  await waitFor(() =>
+    expect(mockedSetToken).toHaveBeenCalledWith("CALLBACK_TOKEN")
+  );
+
+  // No way to test this without testing the implementation detail of calling
+  // setToken??
+
+  // The token is never updated in time it hits <PrivateRoute /> in order for
+  // it to be render the <HomePage /> component. Instead the token is still
+  // empty and we get the <LoginPage />
+
+  // This does not work, but it would be preferred:
+  // await waitFor(() =>
+  //   expect(screen.getByRole("link", { name: /logout/i })).toBeInTheDocument()
+  // );
 });

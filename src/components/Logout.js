@@ -8,11 +8,11 @@ import { useAuth } from "../context/auth";
  * To logout, just remove the token from the context provider.
  */
 export function Logout() {
-  const { removeToken } = useAuth();
+  const { setToken } = useAuth();
 
   useEffect(() => {
-    removeToken();
-  }, [removeToken]);
+    setToken("");
+  }, [setToken]);
 
   return <Redirect to="/login" />;
 }

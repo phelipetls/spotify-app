@@ -7,7 +7,7 @@ import { useAuth } from "../../context/auth";
 const BASE_URL = "https://api.spotify.com/v1/";
 
 export function useSpotifyQuery(queryKeys, fetcher) {
-  const { token, removeToken } = useAuth();
+  const { token, setToken } = useAuth();
 
   axios.interceptors.request.use(req => {
     req.baseURL = BASE_URL;
@@ -21,12 +21,11 @@ export function useSpotifyQuery(queryKeys, fetcher) {
 
   const { isError, error } = response;
 
-
   useEffect(() => {
     if (isError && error?.response?.status === 401) {
-      removeToken();
+      setToken("");
     }
-  }, [isError, error, removeToken]);
+  }, [isError, error, setToken]);
 
   return response;
 }

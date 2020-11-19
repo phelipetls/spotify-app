@@ -16,16 +16,16 @@ import { getToken } from "../utils/get-token";
  * The user is then redirected to the home page.
  */
 export function AuthPage() {
-  const { changeToken } = useAuth();
+  const { setToken } = useAuth();
 
   const url = useLocation();
   const token = getToken(url);
 
   useEffect(() => {
     if (token) {
-      changeToken(token);
+      setToken(token);
     }
-  }, [changeToken, token]);
+  }, [setToken, token]);
 
   return <Redirect to="/" />;
 }

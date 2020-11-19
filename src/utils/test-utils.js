@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 
-import { SpotifyAuthProvider } from "../context/spotify-auth";
+import { AuthProvider, useAuth } from "../context/auth";
 import { PlaylistsProvider } from "../context/playlists";
 
 import { ThemeProvider } from "@material-ui/core/styles";
@@ -15,14 +15,13 @@ const customRender = (
   return render(
     <ThemeProvider theme={theme}>
       <Router {...routerProps}>
-        <SpotifyAuthProvider
-          value={{
-            token: "TOKEN", // authenticated by default
-            ...authProviderValue
-          }}
-        >
-          <PlaylistsProvider>{component}</PlaylistsProvider>
-        </SpotifyAuthProvider>
+        <AuthProvider token="TOKEN" {...authProviderValue}>
+          <PlaylistsProvider>
+            {component}
+            <LocationDisplay />
+            <TokenDisplay />
+          </PlaylistsProvider>
+        </AuthProvider>
       </Router>
     </ThemeProvider>,
     renderOptions

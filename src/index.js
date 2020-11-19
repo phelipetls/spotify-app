@@ -12,7 +12,7 @@ import { theme } from "./styles/Theme.js";
 
 import { QueryCache, ReactQueryCacheProvider } from "react-query";
 
-import { SpotifyAuthProvider } from "./context/spotify-auth";
+import { AuthProvider } from "./context/auth";
 import { PlaylistsProvider } from "./context/playlists";
 
 const queryCache = new QueryCache({
@@ -26,7 +26,7 @@ const queryCache = new QueryCache({
 const ContextWrapper = ({ children }) => (
   <ThemeProvider theme={theme}>
     <PlaylistsProvider>
-      <SpotifyAuthProvider>{children}</SpotifyAuthProvider>
+      <AuthProvider>{children}</AuthProvider>
     </PlaylistsProvider>
   </ThemeProvider>
 );

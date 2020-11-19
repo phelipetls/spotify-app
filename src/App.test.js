@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from "test-utils";
+import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom/extend-expect";
 
 import App from "./App";
@@ -46,4 +47,13 @@ it("should log in after hitting a URL containing an access token", async () => {
   // await waitFor(() =>
   //   expect(screen.getByRole("link", { name: /logout/i })).toBeInTheDocument()
   // );
+});
+
+it("should remove token after user clicks in logout button", async () => {
+  render(<App />, { authProviderValue: { setToken: mockedSetToken } });
+
+  const logoutButton = screen.getByRole("link", { name: "Logout" });
+  userEvent.click(logoutButton);
+
+  waitFor(() => expect(mockedSetToken).toHaveBeenLastCalledWith(""));
 });

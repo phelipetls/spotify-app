@@ -10,30 +10,17 @@ import {
   ListItemSecondaryAction
 } from "@material-ui/core";
 
-import axios from "axios";
-import { useSpotifyQuery } from "./hooks/spotify-query";
-
 import { SpotifyListSkeleton } from "./SpotifyListSkeleton";
 import { AddToPlaylistButton } from "./AddToPlaylistButton";
 
 import { formatDuration } from "./utils/formatDuration";
 
-export function PlaylistTrackList({ id, tracks }) {
-  // Get only 50 first tracks, as it is the API limit
-  const searchParams = new URLSearchParams([
-    ["ids", tracks.slice(0, 50).join(",")]
-  ]);
-
-  const { isLoading, data = {} } = useSpotifyQuery(
-    ["Get tracks in playlist", id],
-    () => axios.get("/tracks?" + searchParams)
-  );
-
+export function PlaylistTrackList({ id, tracks, isLoading }) {
   return isLoading ? (
     <SpotifyListSkeleton />
   ) : (
     <List>
-      {data?.data?.tracks.map(track => {
+      {tracks.map(track => {
         const title = (
           <Link
             color="inherit"
@@ -45,10 +32,9 @@ export function PlaylistTrackList({ id, tracks }) {
         );
 
         const artistName = track.artists[0].name;
-        const albumName = track.album.name;
         const duration = formatDuration(track.duration_ms);
 
-        const subtitle = `${duration} · ${albumName} · ${artistName}`;
+        const subtitle = `${duration} · ${artistName}`;
 
         return (
           <ListItem key={track.id}>

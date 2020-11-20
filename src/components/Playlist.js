@@ -2,10 +2,15 @@ import React from "react";
 
 import { Typography } from "@material-ui/core";
 
+import axios from "axios";
+import { useSpotifyQuery } from "./hooks/spotify-query";
+
 import { useParams } from "react-router-dom";
 import { usePlaylists } from "../context/playlists";
 
 import { PlaylistTrackList } from "./PlaylistTrackList";
+
+import { formatDuration } from "./utils/formatDuration";
 
 /**
  * A page to show the tracks within a playlist.
@@ -20,7 +25,24 @@ export function Playlist() {
 
   const currentPlaylist = playlists.find(playlist => playlist.id === id);
 
-  const tracks = currentPlaylist.tracks;
+  const { isLoading, data = {} } = useSpotifyQuery(
+    ["Get tracks in playlist", id],
+    () => {
+      // Get only 50 first tracks, as it is the API limit
+      const searchParams = new URLSearchParams([
+        ["ids", currentPlaylist.tracks.slice(0, 50).join(",")]
+      ]);
+
+      return axios.get("/tracks?" + searchParams);
+    }
+  );
+
+  const tracks = data?.data?.tracks || [];
+
+  const totalDuration = tracks.reduce(
+    (total, track) => total + track.duration_ms,
+    0
+  );
 
   return (
     <>
@@ -35,10 +57,10 @@ export function Playlist() {
       </Typography>
 
       <Typography variant="body1" align="center">
-        {tracks.length} faixas
+        {tracks.length} faixas · {formatDuration(totalDuration)}
       </Typography>
 
-      {tracks.length > 0 && <PlaylistTrackList id={id} tracks={tracks} />}
+      <PlaylistTrackList id={id} tracks={tracks} isLoading={isLoading} />
     </>
   );
 }

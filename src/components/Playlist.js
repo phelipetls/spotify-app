@@ -1,6 +1,14 @@
 import React from "react";
 
-import { Typography } from "@material-ui/core";
+import {
+  Link,
+  Avatar,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Typography
+} from "@material-ui/core";
 
 import axios from "axios";
 import { useSpotifyQuery } from "./hooks/spotify-query";
@@ -8,9 +16,9 @@ import { useSpotifyQuery } from "./hooks/spotify-query";
 import { useParams } from "react-router-dom";
 import { usePlaylists } from "../context/playlists";
 
-import { PlaylistTrackList } from "./PlaylistTrackList";
-
 import { formatDuration } from "./utils/formatDuration";
+
+import { SpotifyListSkeleton } from "./SpotifyListSkeleton";
 
 /**
  * A page to show the tracks within a playlist.
@@ -60,7 +68,38 @@ export function Playlist() {
         {tracks.length} faixas · {formatDuration(totalDuration)}
       </Typography>
 
-      <PlaylistTrackList id={id} tracks={tracks} isLoading={isLoading} />
+      {isLoading ? (
+        <SpotifyListSkeleton length={currentPlaylist.tracks.length} />
+      ) : (
+        <List>
+          {tracks.map(track => {
+            const title = (
+              <Link
+                color="inherit"
+                underline="none"
+                href={track.external_urls.spotify}
+              >
+                {track.name}
+              </Link>
+            );
+
+            const artistName = track.artists[0].name;
+            const duration = formatDuration(track.duration_ms);
+
+            const subtitle = `${duration} · ${artistName}`;
+
+            return (
+              <ListItem key={track.id}>
+                <ListItemAvatar>
+                  <Avatar alt={track.name} src={track.album.images[0].url} />
+                </ListItemAvatar>
+
+                <ListItemText secondary={subtitle}>{title}</ListItemText>
+              </ListItem>
+            );
+          })}
+        </List>
+      )}
     </>
   );
 }

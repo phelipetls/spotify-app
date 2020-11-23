@@ -10,13 +10,15 @@ import { useSpotifyQuery } from "./hooks/spotify-query";
 
 import { ArtistAlbums } from "./ArtistAlbums";
 import { ArtistTopTracks } from "./ArtistTopTracks";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   artistImg: {
     height: "20vh",
     width: "100%",
-    objectFit: "cover"
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "50% 50%"
   }
 }));
 
@@ -26,6 +28,7 @@ const useStyles = makeStyles(theme => ({
  */
 export function Artist() {
   const classes = useStyles();
+  const theme = useTheme();
 
   const { id } = useParams();
 
@@ -41,10 +44,14 @@ export function Artist() {
       {isLoading ? (
         <Skeleton variant="rect" height="20vh" />
       ) : (
-        <img
-          alt={`Imagem de ${artist.name}`}
-          src={artist.images[0].url}
+        <div
+          aria-label={`Imagem de ${artist.name}`}
           className={classes.artistImg}
+          style={{
+            backgroundImage:
+              `linear-gradient(to bottom, transparent, ${theme.palette.background.default}), ` +
+              `url(${artist.images[0].url})`
+          }}
         />
       )}
 
